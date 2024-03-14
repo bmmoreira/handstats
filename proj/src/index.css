@@ -2,7 +2,9 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -22,13 +24,7 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+
 
 h1 {
   font-size: 3.2em;
@@ -65,4 +61,36 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+body {
+  min-height: 100%;
+   width: 100%;
+   height: 100%; /* NEW */
+  
+}
+
+.container-fluid {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.header-row{
+  height: 80px; 
+}
+.footer-row {
+  height: 40px; 
+}
+
+.middle-row {
+  flex-grow: 1;
+}
+
+/* Optional: Add styling for each row */
+.row-content {
+  background-color: #f0f0f0; /* Example background color */
+  border: 1px solid #ddd; /* Example border */
+  height: 100%; /* Ensures content fills entire row */
 }
