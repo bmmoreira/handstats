@@ -30,6 +30,7 @@ function Home() {
                   </div>
                   <h3>Introducing HandyStats</h3>
                   <h1>Your Ultimate Handball Companion</h1>
+                  
                   <p>
                     Welcome to HandStats, the definitive mobile app designed to
                     revolutionize the way you track and analyze handball

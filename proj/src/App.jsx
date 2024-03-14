@@ -5,6 +5,7 @@ import DispatchContext from "./DispatchContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
 import HomeGuest from "./components/pages/HomeGuest";
+import Handball from "./components/Handball/Handball";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -54,6 +55,10 @@ function App() {
             <Route
               path="/"
               element={state.loggedIn ? <Home /> : <HomeGuest />}
+            />
+             <Route
+              path="/handball"
+              element={state.loggedIn ? <Handball /> : <Handball />}
             />
           </Routes>
         </BrowserRouter>
