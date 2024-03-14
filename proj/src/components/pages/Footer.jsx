@@ -116,7 +116,7 @@ function Footer() {
     <>
       {width < appSettings.mobileBreakpoint ? (
         location.pathname === '/' ||
-        location.pathname === '/statistics' ||
+        location.pathname === '/handball' ||
         location.pathname === '/options' ? (
           <BottomNav />
         ) : (
@@ -136,9 +136,9 @@ function Footer() {
             |{' '}
             <Link
               className="mx-1"
-              to="/help"
+              to="/handball"
               style={{ textDecoration: 'none', fontWeight: '600', color: 'white' }}>
-              Help
+              Handball
             </Link>{' '}
             |{' '}
             <Link
