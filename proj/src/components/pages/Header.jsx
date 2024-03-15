@@ -22,7 +22,7 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
-import { roundedButton } from "../Utils/constants.js";
+import { roundedButton, APP_NAME } from "../Utils/constants.js";
 
 function Header() {
   const appDispatch = useContext(DispatchContext);
@@ -59,7 +59,7 @@ function Header() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            HandyStats
+            {APP_NAME}
           </Typography>
           {(location.pathname === "/") |
           (location.pathname === "/statistics") |

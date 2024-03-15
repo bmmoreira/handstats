@@ -25,21 +25,15 @@ function About() {
                 <div className="row-content">
                   <div>
                    
-                      <img src={appLogo} className="logo" alt="Vite logo" />
+                      <img src={appLogo} className="logo" alt="Handball is Fun logo" />
                    
                   </div>
-                  <h3>Introducing HandyStats</h3>
-                  <h1>Your Ultimate Handball Companion</h1>
+                  <h3>About</h3>
+                  
                   <p>
-                    Welcome to HandStats, the definitive mobile app designed to
-                    revolutionize the way you track and analyze handball
-                    statistics during real-time gameplay.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit, quis. Animi numquam voluptatum sit velit odio quisquam totam atque laboriosam sapiente distinctio, deserunt architecto necessitatibus maxime commodi perspiciatis placeat eos.
                   </p>
-                  <p>
-                    Whether you're a seasoned coach, a passionate player, or an
-                    enthusiastic fan, HandStats is your go-to tool for gaining
-                    deep insights into every aspect of the game.
-                  </p>
+                 
                 </div>
               </div>
             </div>

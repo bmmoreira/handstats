@@ -1,0 +1,9 @@
+.item {
+    flex: 1; /* Each item takes equal space */
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  .item.item-large {
+    flex-grow: 2; /* This item will grow to occupy 2x the space */
+  }

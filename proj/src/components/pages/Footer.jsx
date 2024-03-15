@@ -143,7 +143,7 @@ function Footer() {
             |{' '}
             <Link
               className="mx-1"
-              to="/about-handystats"
+              to="/about"
               style={{ textDecoration: 'none', fontWeight: '600', color: 'white' }}>
               About
             </Link>{' '}

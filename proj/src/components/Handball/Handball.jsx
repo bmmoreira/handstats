@@ -3,6 +3,10 @@ import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
 import Header from "../pages/Header";
 import Footer from "../pages/Footer";
+import PlayerSelection from "./PlayersSelection";
+import StatsView from "./StatsView";
+import ActionsButtons from "./ActionsButtons";
+import FieldView from "./FieldView";
 import "./handball.css";
 
 function Handball() {
@@ -27,77 +31,19 @@ function Handball() {
               <div class="container">
                 <div class="row">
                     {/* Nuno content */}
-                  <div class="col-md-4" style={{backgroundColor: 'red'}}>
-                    <div class="flex-container">
-                      <div class="flex-item">
-                        <img
-                          src="https://via.placeholder.com/300x200"
-                          alt="Placeholder Image"
-                        />
-                      </div>
-                      <div class="flex-item">
-                        <img
-                          src="https://via.placeholder.com/300x200"
-                          alt="Placeholder Image"
-                        />
-                      </div>
-                      <div class="flex-item">
-                        <img
-                          src="https://via.placeholder.com/300x200"
-                          alt="Placeholder Image"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                    <PlayerSelection/>
                    {/* Alex & Bruno content */}
                   <div class="col-md-4" style={{backgroundColor: 'green'}}>
-                    <div class="flex-container">
-                        {/* Bruno content */}
-                      <div class="flex-item">
-                        <img
-                          src="https://via.placeholder.com/300x200"
-                          alt="Placeholder Image"
-                        />
-                      </div>
+                    <div class="flex-container" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
                       {/* Bruno content */}
-                      <div class="flex-item">
-                        <img
-                          src="https://via.placeholder.com/300x200"
-                          alt="Placeholder Image"
-                        />
-                      </div>
+                     <FieldView/>
+                      
                       {/* Alex content */}
-                      <div class="flex-item">
-                        <img
-                          src="https://via.placeholder.com/300x200"
-                          alt="Placeholder Image"
-                        />
-                      </div>
+                      <ActionsButtons/>
                     </div>
                   </div>
                    {/* Joao content */}
-                  <div class="col-md-4" style={{backgroundColor: 'yellow'}}>
-                    <div class="flex-container">
-                      <div class="flex-item">
-                        <img
-                          src="https://via.placeholder.com/300x200"
-                          alt="Placeholder Image"
-                        />
-                      </div>
-                      <div class="flex-item">
-                        <img
-                          src="https://via.placeholder.com/300x200"
-                          alt="Placeholder Image"
-                        />
-                      </div>
-                      <div class="flex-item">
-                        <img
-                          src="https://via.placeholder.com/300x200"
-                          alt="Placeholder Image"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                  <StatsView/>
                 </div>
               </div>
             </div>

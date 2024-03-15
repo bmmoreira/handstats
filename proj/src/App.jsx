@@ -6,11 +6,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
 import HomeGuest from "./components/pages/HomeGuest";
 import Handball from "./components/Handball/Handball";
+import About from "./components/pages/About";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
+
+  const [playerACtive, setPlayersActive] = useState(0);
 
   const initialState = {
     loggedIn: Boolean(localStorage.getItem("aStatsToken")),
@@ -59,6 +62,10 @@ function App() {
              <Route
               path="/handball"
               element={state.loggedIn ? <Handball /> : <Handball />}
+            />
+             <Route
+              path="/about"
+              element={<About />}
             />
           </Routes>
         </BrowserRouter>
