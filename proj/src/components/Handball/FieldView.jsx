@@ -7,11 +7,11 @@ function FieldView() {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
-  
+
 
   return (
    <>
-    <div class="flex-item" style={{backgroundColor: 'blue', flexGrow:'2'}}>
+    <div className="flex-item" style={{backgroundColor: 'blue', flexGrow:'2'}}>
                        bruno asdasdasdas
     </div>
    </>

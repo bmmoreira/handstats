@@ -8,21 +8,21 @@ function StatsView() {
 
   return (
     <>
-      <div class="col-md-4" style={{ backgroundColor: "yellow" }}>
-        <div class="flex-container">
-          <div class="flex-item">
+      <div className="col-md-4" style={{ backgroundColor: "yellow" }}>
+        <div className="flex-container">
+          <div className="flex-item">
             <img
               src="https://via.placeholder.com/300x200"
               alt="Placeholder Image"
             />
           </div>
-          <div class="flex-item">
+          <div className="flex-item">
             <img
               src="https://via.placeholder.com/300x200"
               alt="Placeholder Image"
             />
           </div>
-          <div class="flex-item">
+          <div className="flex-item">
             <img
               src="https://via.placeholder.com/300x200"
               alt="Placeholder Image"

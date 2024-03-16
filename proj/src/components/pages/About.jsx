@@ -3,7 +3,7 @@ import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
 import Header from "./Header";
 import Footer from "./Footer";
-import appLogo from "../../assets/images/logo_handyStats.png";
+import appLogo from "../../assets/images/logo_hb01.png";
 
 function About() {
   const appDispatch = useContext(DispatchContext);

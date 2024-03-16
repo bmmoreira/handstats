@@ -22,7 +22,9 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
-import { roundedButton, APP_NAME } from "../Utils/constants.js";
+import { roundedButton, defaultColors } from "../Utils/constants.js";
+import appLogo from "../../assets/images/logo_extended.png";
+
 
 function Header() {
   const appDispatch = useContext(DispatchContext);
@@ -39,7 +41,10 @@ function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: defaultColors.secondaryColor,
+                                color: "white",
+                               
+                                }}>
         <Toolbar>
           <IconButton
             onClick={() => {
@@ -53,16 +58,10 @@ function Header() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            {APP_NAME}
-          </Typography>
+         <img src={appLogo} alt="Handball is Fun"/>
+         
           {(location.pathname === "/") |
-          (location.pathname === "/statistics") |
+          (location.pathname === "/handball") |
           (location.pathname === "/options") ? (
             ""
           ) : (

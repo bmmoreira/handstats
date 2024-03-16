@@ -3,7 +3,7 @@ import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
 import Header from "./Header";
 import Footer from "./Footer";
-import appLogo from "../../assets/images/logo_handyStats.png";
+import appLogo from "../../assets/images/logo_hb01.png";
 
 function Home() {
   const appDispatch = useContext(DispatchContext);
@@ -25,7 +25,7 @@ function Home() {
                 <div className="row-content">
                   <div>
                     
-                      <img src={appLogo} className="logo" alt="Vite logo" />
+                      <img src={appLogo} className="logo" alt="Handball is Fun" />
                     
                   </div>
                   <h3>Introducing HandyStats</h3>

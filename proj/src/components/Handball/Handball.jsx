@@ -28,13 +28,13 @@ function Handball() {
         <div className="row middle-row">
           <div className="col">
             <div className="row-content">
-              <div class="container">
-                <div class="row">
+              <div className="container">
+                <div className="row">
                     {/* Nuno content */}
                     <PlayerSelection/>
                    {/* Alex & Bruno content */}
-                  <div class="col-md-4" style={{backgroundColor: 'green'}}>
-                    <div class="flex-container" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
+                  <div className="col-md-4" style={{backgroundColor: 'green'}}>
+                    <div className="flex-container" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
                       {/* Bruno content */}
                      <FieldView/>
                       

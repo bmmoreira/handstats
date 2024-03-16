@@ -7,6 +7,15 @@ export const LOGIN_URL = 'https://mh-api.maphidro.com';
 export const COLLECTION_NAME = 'api/mhstations';
 export const PASSMINLENGHT = 5;
 
+export const defaultColors = {
+  primaryColor: '#fde581ff',
+  secondaryColor: '#f55760ff'
+
+}
+
+export const primaryColor = '#fde581ff';
+export const secondaryColor = '#f55760ff';
+
 export const appSettings = {
   mobileBreakpoint: 900
 };
@@ -112,3 +121,10 @@ export const buttonStyle = {
     boxShadow: styleWhite.boxShadowFocus
   }
 };
+
+export class Player {
+  constructor(name, id) {
+      this.name = name;
+      this.id = id;
+  }
+}

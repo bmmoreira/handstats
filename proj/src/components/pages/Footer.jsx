@@ -11,6 +11,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import MapIcon from '@mui/icons-material/Map';
 import InfoIcon from '@mui/icons-material/Info';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import { roundedButton, defaultColors } from "../Utils/constants.js";
+
 
 function Footer() {
   const [value, setValue] = React.useState(0);
@@ -25,7 +27,7 @@ function Footer() {
       <Box sx={{ width: '100%', zIndex: 9999, bottom: '0px', position: 'relative' }}>
         <BottomNavigation
           sx={{
-            backgroundColor: '#1976d2',
+            backgroundColor: defaultColors.secondaryColor,
             height: '70px',
             color: 'white',
             zIndex: 9999
@@ -125,7 +127,7 @@ function Footer() {
       ) : (
         <footer
           className="footer border-top text-center small text-muted p-2 my-0"
-          style={{ backgroundColor: '#1976d2' }}>
+          style={{ backgroundColor: defaultColors.secondaryColor }}>
           <div style={{ color: 'white' }}>
             <Link
               to="/"
@@ -159,7 +161,7 @@ function Footer() {
             )}{' '}
             <span>
               {' '}
-              - Copyright &copy; {new Date().getFullYear()} HandyStats.
+              - Copyright &copy; {new Date().getFullYear()} Handballisfun.org.
             </span>
           </div>
         </footer>

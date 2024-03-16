@@ -24,11 +24,21 @@ function App() {
       avatar: localStorage.getItem("aStatsAvatar"),
       email: localStorage.getItem("aStatsEmail"),
     },
+    playersList: [{name: 'Jogador1', number: 1},{name: 'Jogador2', number: 2},{name: 'Jogador3', number: 3},{name: 'Jogador4', number: 4},{name: 'Jogador5', number: 5},{name: 'Jogador6', number: 6},{name: 'Jogador7', number: 7},{name: 'Jogador8', number: 8},{name: 'Jogador9', number: 9}],
+    playersSelected: [{name: 'Jogador1', number: 1},{name: 'Jogador2', number: 2},{name: 'Jogador3', number: 3},{name: 'Jogador4', number: 4},{name: 'Jogador5', number: 5},{name: 'Jogador6', number: 6},{name: 'Jogador7', number: 7},{name: 'Jogador8', number: 8},{name: 'Jogador9', number: 9}],
+    playersActive: [],
+    playerActive: 0,
+    playersOnBench: [],
   };
 
-  /*
-    This is a reducer function. It's a function that takes two arguments: state and action.
-    */
+/**
+ * This is a reducer function. It's a function that takes two arguments: state and action.
+ * Depending on the action type, it modifies the state accordingly.
+ *
+ * @param {Object} draft - The current state that will be modified.
+ * @param {Object} action - The action that will be performed. It should have a 'type' property and optionally a 'value' or 'data' property.
+ * @returns {void} This function does not return anything; it directly modifies the state.
+ */
   function mapReducer(draft, action) {
     switch (action.type) {
       case "login":
@@ -40,6 +50,12 @@ function App() {
         break;
       case "flashMessages":
         draft.flashMessages.push(action.value);
+        break;
+      case "playerActive":
+        draft.playerActive = action.value;
+        break;
+        case "playersOnBench":
+          draft.playersOnBench = action.value;
         break;
     }
   }

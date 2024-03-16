@@ -3,7 +3,7 @@ import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
 import Header from "./Header";
 import Footer from "./Footer";
-import appLogo from "../../assets/images/logo_handyStats.png";
+import appLogo from "../../assets/images/logo_hb01.png";
 
 function HomeGuest() {
   const appDispatch = useContext(DispatchContext);
@@ -28,8 +28,9 @@ function HomeGuest() {
                       <img src={appLogo} className="logo" alt="Vite logo" />
                    
                   </div>
-                  <h3>Introducing HandyStats</h3>
-                  <h1>Your Ultimate Handball Companion</h1>
+                  <div className="intro">
+                  <h3>Your Ultimate Handball Companion</h3>
+                  
                   <p>
                     Welcome to HandStats, the definitive mobile app designed to
                     revolutionize the way you track and analyze handball
@@ -40,6 +41,9 @@ function HomeGuest() {
                     enthusiastic fan, HandStats is your go-to tool for gaining
                     deep insights into every aspect of the game.
                   </p>
+
+                  </div>
+                 
                 </div>
               </div>
             </div>

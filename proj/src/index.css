@@ -90,7 +90,16 @@ body {
 
 /* Optional: Add styling for each row */
 .row-content {
-  background-color: #f0f0f0; /* Example background color */
+  background-color: #1A535C; /* Example background color */
   border: 1px solid #ddd; /* Example border */
   height: 100%; /* Ensures content fills entire row */
+}
+
+.intro {
+  color: #F7FFF7;
+  border-radius: 12px;
+  background-color: #4ECDC4;
+  margin: auto;
+  width: 430px;
+  padding: 10px;
 }
