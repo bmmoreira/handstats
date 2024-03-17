@@ -24,21 +24,59 @@ function App() {
       avatar: localStorage.getItem("aStatsAvatar"),
       email: localStorage.getItem("aStatsEmail"),
     },
-    playersList: [{name: 'Jogador1', number: 1},{name: 'Jogador2', number: 2},{name: 'Jogador3', number: 3},{name: 'Jogador4', number: 4},{name: 'Jogador5', number: 5},{name: 'Jogador6', number: 6},{name: 'Jogador7', number: 7},{name: 'Jogador8', number: 8},{name: 'Jogador9', number: 9}],
-    playersSelected: [{name: 'Jogador1', number: 1},{name: 'Jogador2', number: 2},{name: 'Jogador3', number: 3},{name: 'Jogador4', number: 4},{name: 'Jogador5', number: 5},{name: 'Jogador6', number: 6},{name: 'Jogador7', number: 7},{name: 'Jogador8', number: 8},{name: 'Jogador9', number: 9}],
-    playersActive: [],
+    playersList: [
+      { name: "Jogador1", number: 1 },
+      { name: "Jogador2", number: 2 },
+      { name: "Jogador3", number: 3 },
+      { name: "Jogador4", number: 4 },
+      { name: "Jogador5", number: 5 },
+      { name: "Jogador6", number: 6 },
+      { name: "Jogador7", number: 7 },
+      { name: "Jogador8", number: 8 },
+      { name: "Jogador9", number: 9 },
+    ],
+    playersSelected: [
+      { name: "Jogador1", number: 1 },
+      { name: "Jogador2", number: 2 },
+      { name: "Jogador3", number: 3 },
+      { name: "Jogador4", number: 4 },
+      { name: "Jogador5", number: 5 },
+      { name: "Jogador6", number: 6 },
+      { name: "Jogador7", number: 7 },
+      { name: "Jogador8", number: 8 },
+      { name: "Jogador9", number: 9 },
+    ],
+
     playerActive: 0,
-    playersOnBench: [],
+    playersOnBench: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    playersOnField: [],
+    gameTime: 0,
+    field_bg_color: "#1a535c",
+    colors: {
+      primaryColor: "#f7fff7",
+      secondaryColor: "#4ecdc4",
+    },
+
+    isVisibleAttackButtons: false,
+    isVisibleDefenseButtons: false,
+    isVisibleSactionButtons: false,
+    gameActions: [{ time: 0, 
+                    action: "Defense",
+                    player: 1,
+                    team: "Home",
+                  shotFrom: "6m",
+                  shotEnd: "6m",
+                   shotResult: "Goal",}],
   };
 
-/**
- * This is a reducer function. It's a function that takes two arguments: state and action.
- * Depending on the action type, it modifies the state accordingly.
- *
- * @param {Object} draft - The current state that will be modified.
- * @param {Object} action - The action that will be performed. It should have a 'type' property and optionally a 'value' or 'data' property.
- * @returns {void} This function does not return anything; it directly modifies the state.
- */
+  /**
+   * This is a reducer function. It's a function that takes two arguments: state and action.
+   * Depending on the action type, it modifies the state accordingly.
+   *
+   * @param {Object} draft - The current state that will be modified.
+   * @param {Object} action - The action that will be performed. It should have a 'type' property and optionally a 'value' or 'data' property.
+   * @returns {void} This function does not return anything; it directly modifies the state.
+   */
   function mapReducer(draft, action) {
     switch (action.type) {
       case "login":
@@ -54,8 +92,25 @@ function App() {
       case "playerActive":
         draft.playerActive = action.value;
         break;
-        case "playersOnBench":
-          draft.playersOnBench = action.value;
+      case "playersOnBench":
+        draft.playersOnBench = action.value;
+        break;
+      case "playersOnField":
+        draft.playersOnField = action.value;
+        break;
+      case "isVisibleAttackButtons":
+        draft.isVisibleAttackButtons = action.value;
+        break;
+      case "isVisibleDefenseButtons":
+        draft.isVisibleDefenseButtons = action.value;
+        break;
+      case "isVisibleSanctionButtons":
+        draft.isVisibleSanctionButtons = action.value;
+        break;
+      case "turnOffActionsView":
+        draft.isVisibleSanctionButtons = false;
+        draft.isVisibleDefenseButtons = false;
+        draft.isVisibleAttackButtons = false;
         break;
     }
   }
@@ -68,24 +123,19 @@ function App() {
   return (
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
-       
         <BrowserRouter>
           <Routes>
             <Route
               path="/"
               element={state.loggedIn ? <Home /> : <HomeGuest />}
             />
-             <Route
+            <Route
               path="/handball"
               element={state.loggedIn ? <Handball /> : <Handball />}
             />
-             <Route
-              path="/about"
-              element={<About />}
-            />
+            <Route path="/about" element={<About />} />
           </Routes>
         </BrowserRouter>
-        
       </DispatchContext.Provider>
     </StateContext.Provider>
   );

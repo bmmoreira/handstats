@@ -9,7 +9,7 @@ import ActionsButtons from "./ActionsButtons";
 import FieldView from "./FieldView";
 import "./handball.css";
 
-function Handball() {
+function Handball(props) {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
@@ -33,7 +33,7 @@ function Handball() {
                     {/* Nuno content */}
                     <PlayerSelection/>
                    {/* Alex & Bruno content */}
-                  <div className="col-md-4" style={{backgroundColor: 'green'}}>
+                  <div className="col-md-4" style={{backgroundColor: appState.colors.secondaryColor, padding: '0px'}}>
                     <div className="flex-container" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
                       {/* Bruno content */}
                      <FieldView/>

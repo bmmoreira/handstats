@@ -21,87 +21,67 @@ function PlayerSelection() {
    * State to keep track of selected players.
    * @type {string[]}
    */
-  const [selectedPlayers, setSelectedPlayers] = useState([]);
-  const [playersOnBench, setPlayersOnBench] = useState([]);
+  const [selectedPlayersBench, setSelectedPlayersBench] = useState([]);
+  const [playersOnBench, setPlayersOnBench] = useState(appState.playersOnBench);
+  const [playersOnField, setPlayersOnField] = useState([]);
+  const [selectedPlayersField, setSelectedPlayersField] = useState([]);
 
   /**
    * Toggles the selection state of a player.
-   * @param {string} playerName - The name of the player to toggle.
+   * @param {number} playerNumber - The number of the player to toggle.
    * @returns {void}
    */
-  const togglePlayerSelection = (player) => {
-    if (selectedPlayers.includes(player.name)) {
+  const togglePlayerSelection = (playerNumber) => {
+    if (selectedPlayersBench.includes(playerNumber)) {
       /*
         If the player name is already in the selectedPlayers array, 
         it means the player is currently selected. In this case, 
         it filters out the player name from the selectedPlayers array using filter, 
         effectively deselecting the player.
+        In JavaScript, the filter() function is an array method used to create a new 
+        array with all elements that pass a certain test provided by a callback function
+        In our case it will create a new array with all elements that are 
+        different from the playerNumber selected
        */
-      setSelectedPlayers(
-        selectedPlayers.filter((name) => name !== player.name)
+        setSelectedPlayersBench(
+        selectedPlayersBench.filter((value) => value !== playerNumber)
       );
     } else {
       /*
         If the player name is not in the selectedPlayers array, 
         it means the player is not currently selected. In this case, 
-        it adds the player name to the selectedPlayers array using the spread operator ..., 
+        it adds the player number to the selectedPlayers array using the spread operator ..., 
         effectively selecting the player.
         */
-      setSelectedPlayers([...selectedPlayers, player.name]);
+      setSelectedPlayersBench([...selectedPlayersBench, playerNumber]);
     }
-    console.log(selectedPlayers);
+    console.log(selectedPlayersBench);
   };
-
-  /**
-   * State to keep track of selected players.
-   * @type {string[]}
-   */
-  const [selectedRemovePlayers, setSelectedRemovePlayers] = useState([]);
 
   /**
    * Toggles the selection state of a player.
-   * @param {string} playerName - The name of the player to toggle.
+   * @param {number} playerNumber - The number of the player to toggle.
    * @returns {void}
    */
-  const togglePlayerRemoveSelection = (player) => {
-    if (selectedRemovePlayers.includes(player)) {
-      /*
-      If the player name is already in the selectedPlayers array, 
-      it means the player is currently selected. In this case, 
-      it filters out the player name from the selectedPlayers array using filter, 
-      effectively deselecting the player.
-     */
-      setSelectedRemovePlayers(
-        selectedRemovePlayers.filter((name) => name !== player)
+  const togglePlayerSelectionField = (playerNumber) => {
+    if (selectedPlayersField.includes(playerNumber)) {
+        setSelectedPlayersField(
+        selectedPlayersField.filter((value) => value !== playerNumber)
       );
     } else {
-      /*
-      If the player name is not in the selectedPlayers array, 
-      it means the player is not currently selected. In this case, 
-      it adds the player name to the selectedPlayers array using the spread operator ..., 
-      effectively selecting the player.
-      */
-      setSelectedRemovePlayers([...selectedRemovePlayers, player]);
+      setSelectedPlayersField([...selectedPlayersField, playerNumber]);
     }
-    console.log(selectedRemovePlayers);
+    
   };
 
-  const togglePlayerActive = (player) => {
-    appDispatch({ type: "playersActive", value: player });
-  };
 
-  /**
-   * State to keep track of active players.
-   * @type {Set<Object>} playerSet
-   */
-  const [activePlayers, setActivePlayers] = useState([]);
-
-  function moveToActive(playerSet, playerList) {
-    console.log("playerList: " + playerList);
-    playerList.forEach((player) => {
-      console.log("player: " + player);
-      if (activePlayers.includes(player)) {
-        console.log("player already in activePlayers: " + player);
+ 
+  function moveToField() {
+    
+    selectedPlayersBench.forEach((playerNumber) => {
+      console.log("player: " + playerNumber);
+      if (playersOnField.includes(playerNumber)) {
+        console.log("player already in playersOnBench array: " + playerNumber);
       } else {
         /*
          If the player name is not in the selectedPlayers array, 
@@ -109,8 +89,29 @@ function PlayerSelection() {
          it adds the player name to the selectedPlayers array using the spread operator ..., 
          effectively selecting the player.
         */
-        setActivePlayers([...activePlayers, player]);
-        setPlayersOnBench([...playersOnBench], player.number);
+         console.log("add player to field array: " + playerNumber);
+         setPlayersOnField([...playersOnField, playerNumber]);
+
+         setPlayersOnBench(
+          playersOnBench.filter((value) => value !== playerNumber)
+        );
+        setSelectedPlayersBench(
+          []
+        );
+      }
+    });
+  }
+
+  function moveToBench() {
+    selectedPlayersField.forEach((playerNumber) => {
+
+      if (playersOnBench.includes(playerNumber)) {
+        console.log("player already in playersOnBench array: " + playerNumber);
+      } else {
+         setPlayersOnBench([...playersOnBench, playerNumber]);
+         setPlayersOnField(
+          playersOnField.filter((value) => value !== playerNumber)
+        );
       }
     });
   }
@@ -125,13 +126,13 @@ const getPlayerData = (playerNumber) => {
   return appState.playersList.find((p) => p.number === playerNumber);
 };
 
-  useEffect(() => {
+/*   useEffect(() => {
     console.log("active players: " + activePlayers);
-  }, [activePlayers]);
+  }, [activePlayers]); */
 
   return (
     <>
-      <div className="col-md-4" style={{ backgroundColor: "darkblue" }}>
+      <div className="col-md-4" style={{ backgroundColor: appState.field_bg_color }}>
         <div className="flex-container">
           <div className="flex-item">
             <Box
@@ -170,21 +171,21 @@ const getPlayerData = (playerNumber) => {
                 }}
               >
                 <Grid container spacing={0}>
-                  {appState.playersList.map((player, index) => (
+                  {playersOnBench.map((number, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
                       <Button
                         variant={
-                          selectedPlayers.includes(player.name)
+                          selectedPlayersBench.includes(number)
                             ? "light"
                             : "dark"
                         }
                         size="large"
                         onClick={() => {
-                          console.log("clicked: " + player.name);
-                          togglePlayerSelection(player);
+                          console.log("clicked: " + number);
+                          togglePlayerSelection(number);
                         }}
                       >
-                        {player.name}
+                        {number}
                       </Button>
                     </Grid>
                   ))}
@@ -215,8 +216,8 @@ const getPlayerData = (playerNumber) => {
                 variant="dark"
                 size="sm"
                 onClick={() => {
-                  console.log("arrow down clicked: " + selectedPlayers);
-                  
+                  console.log("arrow down clicked: " + selectedPlayersField);
+                  moveToBench();
                 }}
               >
                 <ArrowDropUpIcon />
@@ -225,8 +226,9 @@ const getPlayerData = (playerNumber) => {
                 variant="dark"
                 size="sm"
                 onClick={() => {
-                  console.log("arrow down clicked: " + selectedPlayers);
-                  moveToActive(activePlayers, selectedPlayers);
+                  console.log("arrow down clicked: " + selectedPlayersBench);
+                  moveToField();
+                  //appDispatch({ type: "playersOnField", value: player.number });
                 }}
               >
                 <ArrowDropDownIcon />
@@ -264,21 +266,23 @@ const getPlayerData = (playerNumber) => {
                 }}
               >
                 <Grid container spacing={0}>
-                  {activePlayers.map((player, index) => (
+                  {playersOnField.map((playerNumber, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
                       <Button
                         size="lg"
                         variant={
-                          appState.playerActive == player.number
+                          selectedPlayersField.includes(playerNumber)
                             ? "light"
                             : "dark"
                         }
                         onClick={() => {
-                          console.log("clicked Active: " + player.number);
-                          togglePlayerActive(player);
+                          console.log("clicked Active: " + playerNumber);
+                          togglePlayerSelectionField(playerNumber);
+                          appDispatch({ type: "turnOffActionsView"}); 
+                          appDispatch({ type: "playerActive", value: playerNumber });
                         }}
                       >
-                        {player}
+                        {playerNumber}
                       </Button>
                     </Grid>
                   ))}
