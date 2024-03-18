@@ -3,7 +3,7 @@ import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
 import Header from "./Header";
 import Footer from "./Footer";
-import appLogo from "../../assets/images/logo_hb01.png";
+import appLogo from "../../assets/images/logotipo_cesae_digital.png";
 
 function About() {
   const appDispatch = useContext(DispatchContext);
@@ -28,11 +28,15 @@ function About() {
                       <img src={appLogo} className="logo" alt="Handball is Fun logo" />
                    
                   </div>
+                  <div className="intro">
                   <h3>About</h3>
                   
                   <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit, quis. Animi numquam voluptatum sit velit odio quisquam totam atque laboriosam sapiente distinctio, deserunt architecto necessitatibus maxime commodi perspiciatis placeat eos.
+                  This application is one the final projects of the CESAE DIGITAL FrontEnd Developer Course 2023/2024 taking place in Lisbon within the scope of PRO_MOV by Reskilling 4 Employment.
                   </p>
+                  <p>Team members in alphabetical order: Alexandre Novas, Bruno Moreira, Carina Coelho, João Souza, Nuno Soares. Client Tutor: João Câncio. Project Supervisors: Helena Passos, José Alfaiate and Bruno Santos </p>
+              </div>
+            
                  
                 </div>
               </div>

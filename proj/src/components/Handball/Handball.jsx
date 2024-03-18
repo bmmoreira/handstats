@@ -30,20 +30,28 @@ function Handball(props) {
             <div className="row-content">
               <div className="container">
                 <div className="row">
-                    {/* Nuno content */}
-                    <PlayerSelection/>
-                   {/* Alex & Bruno content */}
-                  <div className="col-md-4" style={{backgroundColor: appState.colors.secondaryColor, padding: '0px'}}>
-                    <div className="flex-container" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
-                      {/* Bruno content */}
-                     <FieldView/>
-                      
-                      {/* Alex content */}
-                      <ActionsButtons/>
+                  {/* First Main Column - Players in Bench and Active */}
+                  <div className="col-md-4" style={{ padding: "5px" }}>
+                    <PlayerSelection />
+                  </div>
+                  {/* Second Main Column - Handball Field and Action Button */}
+                  <div className="col-md-4" style={{ padding: "5px" }}>
+                    <div
+                      className="flex-container"
+                      style={{
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <FieldView />
+                      <ActionsButtons />
                     </div>
                   </div>
-                   {/* Joao content */}
-                  <StatsView/>
+                  {/* Third Main Column - TimeCounter, Timeline and Statistcs */}
+                  <div className="col-md-4" style={{ padding: "5px" }}>
+                    <StatsView />
+                  </div>
                 </div>
               </div>
             </div>

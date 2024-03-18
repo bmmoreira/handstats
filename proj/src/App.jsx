@@ -55,18 +55,14 @@ function App() {
     colors: {
       primaryColor: "#f7fff7",
       secondaryColor: "#4ecdc4",
+      terciaryColor: "#ffe66d",
+      quaternaryColor: "#ff6b6b",
     },
 
     isVisibleAttackButtons: false,
     isVisibleDefenseButtons: false,
     isVisibleSactionButtons: false,
-    gameActions: [{ time: 0, 
-                    action: "Defense",
-                    player: 1,
-                    team: "Home",
-                  shotFrom: "6m",
-                  shotEnd: "6m",
-                   shotResult: "Goal",}],
+    gameActions: [],
   };
 
   /**
@@ -111,6 +107,9 @@ function App() {
         draft.isVisibleSanctionButtons = false;
         draft.isVisibleDefenseButtons = false;
         draft.isVisibleAttackButtons = false;
+      break;
+      case "gameActions":
+        draft.gameActions.push(action.value);
         break;
     }
   }

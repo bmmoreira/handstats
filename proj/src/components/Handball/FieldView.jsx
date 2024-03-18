@@ -3,6 +3,7 @@ import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
 import "./fieldview.css";
 import ActionsView from "./ActionsView";
+import Box from "@mui/material/Box";
 
 
 function FieldView() {
@@ -34,6 +35,17 @@ function FieldView() {
 
   return (
    <>
+       <Box
+             
+             sx={{
+               backgroundColor: appState.colors.primaryColor,
+               border: "2px solid grey",
+               borderRadius: "20px",
+               padding: "10px",
+               margin: "10px 0 10px 0",
+               
+             }}
+           >
     <div className="flex-item" style={{backgroundColor: appState.field_bg_color, flexGrow:'2', position: 'relative'}}>
     {appState.isVisibleAttackButtons && <ActionsView type="attack"/>}
     {appState.isVisibleDefenseButtons && <ActionsView type="defense"/>}
@@ -312,6 +324,7 @@ function FieldView() {
                         </g>
                     </svg>
     </div>
+    </Box>
    </>
   );
 }

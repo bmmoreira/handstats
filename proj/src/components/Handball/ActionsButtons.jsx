@@ -6,17 +6,45 @@ import Button from "@mui/material/Button";
 import SportsKabaddiIcon from "@mui/icons-material/SportsKabaddi";
 import SimCardAlertIcon from "@mui/icons-material/SimCardAlert";
 import SportsHandballIcon from "@mui/icons-material/SportsHandball";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from "@mui/material/Box";
+
 
 function ActionsButtons() {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
+  const theme = createTheme({
+    components: {
+      MuiButton: {  
+        styleOverrides: {
+          root: {
+            width: '120px',
+            backgroundColor: appState.colors.quaternaryColor, 
+            '&:hover': {
+              backgroundColor: '#ffe66d',
+              color: '#ff0000', 
+              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',         
+            },
+            borderRadius: '18px', 
+            padding: '12px 24px', 
+            fontWeight: 'bold', 
+            fontSize: '12px', 
+            textTransform: 'uppercase', 
+          },
+        },
+      },
+    },
+  });
+
   return (
     <>
+    <ThemeProvider theme={theme}>
       <div
         className="flex-item"
-        style={{ backgroundColor: appState.colors.secondaryColor, flex: "1"}}
+        style={{ backgroundColor: appState.colors.terciaryColor, flex: "1"}}
       >
+          
         <div className="container">
           <div className="row">
             <div className="col">Jogador {appState.playerActive}</div>
@@ -24,11 +52,13 @@ function ActionsButtons() {
 
           <div className="row">
             <div className="col">
+            
               <ButtonGroup
                 variant="contained"
                 aria-label="actions group"
-                orientation="horizontal"
+                orientation="horizontal"  
               >
+              
                 <Button
                   loadingposition="start"
                   startIcon={<SimCardAlertIcon />}
@@ -60,10 +90,13 @@ function ActionsButtons() {
                   Attack
                 </Button>
               </ButtonGroup>
+              
             </div>
           </div>
         </div>
+        
       </div>
+      </ThemeProvider>
     </>
   );
 }

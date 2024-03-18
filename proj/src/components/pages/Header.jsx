@@ -62,7 +62,7 @@ function Header() {
          
           {(location.pathname === "/") |
           (location.pathname === "/handball") |
-          (location.pathname === "/options") ? (
+          (location.pathname === "/about") ? (
             ""
           ) : (
             <>

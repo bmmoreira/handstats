@@ -4,6 +4,7 @@ import StateContext from "../../StateContext";
 import Header from "./Header";
 import Footer from "./Footer";
 import appLogo from "../../assets/images/logo_hb01.png";
+import appLogoHorizontal from "../../assets/images/logo_hb01_horizontal02.png";
 
 function HomeGuest() {
   const appDispatch = useContext(DispatchContext);
@@ -24,19 +25,19 @@ function HomeGuest() {
           <div className="col">
             <div className="row-content">
               <div>
-                <img src={appLogo} className="logo" alt="Vite logo" />
+                <img src={appLogo} className="logo" alt="HandballIsFun logo" />
               </div>
               <div className="intro">
-                <h3>Your Ultimate Handball Companion</h3>
-
+              <img src={appLogoHorizontal} alt="HandballIsFun logo" style={{ margin: '10px'}} />
+               
                 <p>
-                  Welcome to HandStats, the definitive mobile app designed to
+                  The definitive mobile app designed to
                   revolutionize the way you track and analyze handball
                   statistics during real-time gameplay.
                 </p>
                 <p>
                   Whether you're a seasoned coach, a passionate player, or an
-                  enthusiastic fan, HandStats is your go-to tool for gaining
+                  enthusiastic fan, HandballIsFun is your go-to tool for gaining
                   deep insights into every aspect of the game.
                 </p>
               </div>

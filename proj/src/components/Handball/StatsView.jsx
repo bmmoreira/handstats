@@ -11,7 +11,18 @@ function StatsView() {
 
   return (
     <>
-      <div className="col-md-4" style={{ backgroundColor: appState.field_bg_color }}>
+      
+            <Box
+             
+             sx={{
+               backgroundColor: appState.colors.primaryColor,
+               border: "2px solid grey",
+               borderRadius: "20px",
+               padding: "10px",
+               margin: "10px 0 10px 0",
+               
+             }}
+           >
         <div className="flex-container">
           <Box
             sx={{ height: "70vh", display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center"}}
@@ -40,7 +51,8 @@ function StatsView() {
 
          
         </div>
-      </div>
+        </Box>
+     
     </>
   );
 }

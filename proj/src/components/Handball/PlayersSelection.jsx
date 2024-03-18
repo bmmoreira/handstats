@@ -7,15 +7,50 @@ import { Fab, Skeleton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { borderRadius, color, textAlign } from "@mui/system";
-import { grey } from "@mui/material/colors";
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 function PlayerSelection() {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
+
+  const theme = createTheme({
+    components: {
+      MuiButton: {
+       
+        styleOverrides: {
+          root: {
+            width: '40px', 
+            height: '40px', 
+            backgroundColor: appState.colors.quaternaryColor, // Change background color of the button
+            '&:hover': {
+              backgroundColor: '#ffe66d',
+              color: '#ff0000', // Change text color on hover
+              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', // Add a box shadow on hover     
+              // Add any other styles you want to change on hover
+            },
+            '&.MuiButton-dark': {
+              backgroundColor: appState.colors.quaternaryColor, // Example color for contained variant
+              color: 'white', // Example text color for contained variant
+            },
+            '&.MuiButton-light': {
+              borderColor: '#f7fff7', // Example border color for outlined variant
+              backgroundColor: '#f7fff7', 
+              color: 'blue', // Example text color for outlined variant
+            },
+            borderRadius: '12px', // Change border radius of the button
+            padding: '12px 24px', // Change padding of the button
+            fontWeight: 'bold', // Change font weight of the button text
+            fontSize: '12px', // Change font size of the button text
+            textTransform: 'uppercase', // Change text transformation of the button text
+            margin: '2px 2px 2px 2px',
+            // Add any other styles you want to apply to all buttons
+          },
+        },
+      },
+    },
+  });
 
   /**
    * State to keep track of selected players.
@@ -132,7 +167,18 @@ const getPlayerData = (playerNumber) => {
 
   return (
     <>
-      <div className="col-md-4" style={{ backgroundColor: appState.field_bg_color }}>
+    <ThemeProvider theme={theme}>
+    <Box
+             
+              sx={{
+                backgroundColor: appState.colors.primaryColor,
+                border: "2px solid grey",
+                borderRadius: "20px",
+                padding: "10px",
+                margin: "10px 0 10px 0",
+                
+              }}
+            >
         <div className="flex-container">
           <div className="flex-item">
             <Box
@@ -162,12 +208,14 @@ const getPlayerData = (playerNumber) => {
               <Box
                 display={"flex"}
                 sx={{
-                  backgroundColor: "#383838",
+                  backgroundColor: appState.colors.terciaryColor,
+                  width: "400px",
                   color: "white",
                   border: "2px solid grey",
                   borderRadius: "20px",
                   textAlign: "left",
-                  margin: "5px 0",
+                  margin: "5px",
+                  minHeight: "150px",
                 }}
               >
                 <Grid container spacing={0}>
@@ -201,11 +249,11 @@ const getPlayerData = (playerNumber) => {
                 display={"justify"}
                 p={1}
                 sx={{
-                  backgroundColor: "#383838",
+                  backgroundColor: appState.colors.secondaryColor,
                   color: "white",
                   border: "2px solid grey",
                   borderRadius: "20px",
-                  margin: "5px 0 5px 45px",
+                 
                 }}
               >
                 <h4>BENCH</h4>
@@ -241,7 +289,7 @@ const getPlayerData = (playerNumber) => {
                 display={"justify"}
                 p={1}
                 sx={{
-                  backgroundColor: "#383838",
+                  backgroundColor: appState.colors.secondaryColor,
                   color: "white",
                   border: "2px solid grey",
                   borderRadius: "20px",
@@ -257,12 +305,13 @@ const getPlayerData = (playerNumber) => {
                 width={400}
                 display={"inline-block"}
                 sx={{
-                  backgroundColor: "#383838",
+                  backgroundColor: appState.colors.terciaryColor,
                   color: "white",
                   border: "2px solid grey",
                   borderRadius: "20px",
                   textAlign: "right",
-                  margin: "5px 45px",
+                  margin: "5px",
+                 
                 }}
               >
                 <Grid container spacing={0}>
@@ -291,7 +340,8 @@ const getPlayerData = (playerNumber) => {
             </div>
           </div>
         </div>
-      </div>
+        </Box>
+      </ThemeProvider>
     </>
   );
 }
