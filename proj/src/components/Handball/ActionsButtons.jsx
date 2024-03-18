@@ -40,9 +40,20 @@ function ActionsButtons() {
   return (
     <>
     <ThemeProvider theme={theme}>
+    <Box
+             
+             sx={{
+               backgroundColor: appState.colors.primaryColor,
+               border: "2px solid grey",
+               borderRadius: "20px",
+               padding: "10px",
+               margin: "0px 0 10px 0",
+               flex: "1"
+             }}
+           >
       <div
         className="flex-item"
-        style={{ backgroundColor: appState.colors.terciaryColor, flex: "1"}}
+        
       >
           
         <div className="container">
@@ -96,6 +107,7 @@ function ActionsButtons() {
         </div>
         
       </div>
+      </Box>
       </ThemeProvider>
     </>
   );
