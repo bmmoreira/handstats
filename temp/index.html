@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixed Height First and Last Row</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .container-fluid {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .first-row,
+    .last-row {
+      height: 80px; /* Adjust the height as needed */
+    }
+
+    .middle-row {
+      flex-grow: 1;
+    }
+
+    /* Optional: Add styling for each row */
+    .row-content {
+      background-color: #f0f0f0; /* Example background color */
+      border: 1px solid #ddd; /* Example border */
+      height: 100%; /* Ensures content fills entire row */
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row first-row">
+      <div class="col">
+        <div class="row-content">
+          <!-- Content for first row -->
+          First Row
+        </div>
+      </div>
+    </div>
+    <div class="row middle-row">
+      <div class="col">
+        <div class="row-content">
+          <!-- Content for middle row -->
+          Middle Row
+        </div>
+      </div>
+    </div>
+    <div class="row last-row">
+      <div class="col">
+        <div class="row-content">
+          <!-- Content for last row -->
+          Last Row
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
