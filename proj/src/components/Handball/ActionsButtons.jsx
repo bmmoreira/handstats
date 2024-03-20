@@ -58,7 +58,7 @@ function ActionsButtons() {
           
         <div className="container">
           <div className="row">
-            <div className="col">Jogador {appState.playerActive}</div>
+            <div className="col">{appState.playerActive != 0 ? `Jogador ${appState.playerActive}` : 'No Player Selected'}</div>
           </div>
 
           <div className="row">

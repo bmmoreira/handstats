@@ -8,13 +8,17 @@ export const COLLECTION_NAME = 'api/mhstations';
 export const PASSMINLENGHT = 5;
 
 export const defaultColors = {
-  primaryColor: '#fde581ff',
-  secondaryColor: '#f55760ff'
+  primary: '#fde581ff',
+  secondary: '#f55760ff',
+  terciary: '#fde581ff',
+  quaternary: '#1a535c'
 
 }
 
 export const primaryColor = '#fde581ff';
 export const secondaryColor = '#f55760ff';
+export const terciaryColor = '#fde581ff';
+export const quaternaryColor = '#f55760ff';
 
 export const appSettings = {
   mobileBreakpoint: 900
