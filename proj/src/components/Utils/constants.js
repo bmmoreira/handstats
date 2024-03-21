@@ -12,7 +12,6 @@ export const defaultColors = {
   secondary: '#f55760ff',
   terciary: '#fde581ff',
   quaternary: '#1a535c'
-
 }
 
 export const primaryColor = '#fde581ff';

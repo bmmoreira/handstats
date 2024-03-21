@@ -10,6 +10,7 @@ import About from "./components/pages/About";
 import Header from "./components/pages/Header";
 import Footer from "./components/pages/Footer";
 import Register from "./components/pages/Register";
+import FlashMessages from "./components/pages/FlashMessages";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -132,6 +133,7 @@ function App() {
               <div className="col">
                 <div className="row-content">
                   <Header />
+                  <FlashMessages messages={state.flashMessages} />
                 </div>
               </div>
             </div>

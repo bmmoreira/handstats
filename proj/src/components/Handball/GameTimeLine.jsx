@@ -51,8 +51,7 @@ export default function GameTimeline() {
     <Timeline position="right">
 
     {appState.gameActions.map((item) => (
-             <TimelineItem sx={{ minWidth: '350px'}}>
-
+             <TimelineItem sx={{ minWidth: '350px'}} key={item.id}>
           
              <TimelineOppositeContent
                sx={{ m: 'auto 0' }}

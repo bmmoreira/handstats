@@ -10,25 +10,38 @@ function FieldView() {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
-  const handleClick = (event) => {
+   /**
+     * Handles click events on the field view.
+     * 
+     * @param {Event} event - The click event.
+     * @returns {void}
+  */
+  const handleFieldClick = (event) => {
     // Get the target element that was clicked
     const target = event.target;
+    let message = `Area out of play clicked! ID: ${target.id}`;
 
     // You can now inspect the target element to determine which specific item was clicked
     if (target.tagName === 'path') {
-      // If a circle was clicked
-      const areaId = target.id; // Get the ID of the circle
-      console.log('Area clicked! ID:', areaId);
+    // If a path (representing an attack area) was clicked
+      const areaId = target.id;
+      message = `Attack area clicked! ID: ${areaId}`;
     } else if (target.tagName === 'rect') {
-      // If a rectangle was clicked
+      // If goal rectangle was clicked
       const rectId = target.id; // Get the ID of the rectangle
-      console.log('Rectangle clicked! ID:', rectId);
+      message = `Goal rectangle clicked! ID: ${rectId}`;
+      
     } else if (target.tagName === 'polygon') {
         // If a rectangle was clicked
         const polygonId = target.id; // Get the ID of the rectangle
-        console.log('Polygon clicked! ID:', polygonId);
-      }
-    // Add more conditions as needed for other SVG elements
+        message = `Miss polygon area clicked! ID: ${polygonId}`;
+        
+    }
+    console.log(message);
+    appDispatch({
+        type: 'flashMessages',
+        value: message
+    });
   };
 
   
@@ -50,7 +63,7 @@ function FieldView() {
     {appState.isVisibleAttackButtons && <ActionsView type="attack"/>}
     {appState.isVisibleDefenseButtons && <ActionsView type="defense"/>}
     {appState.isVisibleSanctionButtons && <ActionsView type="sanction"/>}
-    <svg id="courtgoal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 106.43 81.19" onClick={handleClick} >
+    <svg id="courtgoal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 106.43 81.19" onClick={handleFieldClick} >
                         <defs>
                             <style>{`
                             
