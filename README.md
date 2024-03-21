@@ -10,7 +10,7 @@ Esta aplicação é um dos projetos finais do Curso CESAE DIGITAL FrontEnd Devel
 - Bruno Moreira, 
 - Carina Coelho, 
 - João Souza, 
-- Nuno Soares.
+- Nuno Soares. **This is hold text**
 
 ### Cliente Tutor: 
 João Câncio. 
