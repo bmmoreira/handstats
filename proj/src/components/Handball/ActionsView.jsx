@@ -34,45 +34,6 @@ const SanctionButtons = [
   { id: 3, name: "2 minutes", icon: <SimCardAlertIcon /> },
 ];
 
-const selectedButtons = (type) => {
-  switch (type) {
-    case "attack":
-      return AttackButtons;
-    case "defense":
-      return DefenseButtons;
-    case "sanction":
-      return SanctionButtons;
-  }
-};
-
-
-const setActionType = (type, name) => {
-  console.log("Setting action type to: " + type);
-  switch (type) {
-    case "attack":
-      {
-        appDispatch({
-          type: "gameActions",
-          value: {
-            time: localStorage.getItem("timer"),
-            action: type,
-            actionName: name,
-            player: appState.playerActive,
-            team: "Home",
-            shotFrom: null,
-            shotEnd: null,
-            shotResult: null,
-          },
-        });
-      }
-      return;
-    case "defense":
-      return DefenseButtons;
-    case "sanction":
-      return SanctionButtons;
-  }
-};
-
 function ActionsView(props) {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
@@ -102,6 +63,50 @@ function ActionsView(props) {
     },
   });
 
+  /**
+   * Returns the appropriate button component based on the type.
+   *
+   * @param {string} type - The type of the button. Can be "attack", "defense", or "sanction".
+   * @returns {React.Component} The button component corresponding to the type.
+   */
+  const selectedButtons = (type) => {
+    switch (type) {
+      case "attack":
+        return AttackButtons;
+      case "defense":
+        return DefenseButtons;
+      case "sanction":
+        return SanctionButtons;
+    }
+  };
+
+  const onClickActionButton = (button) => {
+       
+    if (appState.playerActive === 0) {
+      appDispatch({
+        type: "flashMessages",
+        value: "Please Select a Player First!",
+      }); 
+      appDispatch({
+        type: "turnOffActionsView",
+      });
+    } else {
+      appDispatch({
+        type: "gameActions",
+        value: {
+          time: localStorage.getItem("timer"),
+          action: props.type,
+          actionName: button.name,
+          player: appState.playerActive,
+          team: "Home",
+          shotFrom: null,
+          shotEnd: null,
+          shotResult: null,
+        },
+      });
+    }
+  };
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -125,20 +130,10 @@ function ActionsView(props) {
                 key={button.id}
                 startIcon={button.icon}
                 onClick={() => {
-                  console.log("Button clicked" + button.name);
-                  appDispatch({
-                    type: "gameActions",
-                    value: {
-                      time: localStorage.getItem("timer"),
-                      action: props.type,
-                      actionName: button.name,
-                      player: appState.playerActive,
-                      team: "Home",
-                      shotFrom: null,
-                      shotEnd: null,
-                      shotResult: null,
-                    },
-                  });
+                  console.log(
+                    "Action View Component, button clicked: " + button.name
+                  );
+                  onClickActionButton(button);
                 }}
               >
                 {button.name}

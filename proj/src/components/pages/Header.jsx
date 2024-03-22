@@ -41,7 +41,7 @@ function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: defaultColors.secondaryColor,
+      <AppBar position="static" sx={{ backgroundColor: defaultColors.secondary,
                                 color: "white",
                                
                                 }}>
@@ -62,6 +62,7 @@ function Header() {
          
           {(location.pathname === "/") |
           (location.pathname === "/handball") |
+          (location.pathname === "/register") |
           (location.pathname === "/about") ? (
             ""
           ) : (

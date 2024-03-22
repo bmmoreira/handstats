@@ -15,15 +15,7 @@ function Handball(props) {
 
   return (
     <>
-      {/* g-0 is a utility class that sets the margin and padding to 0 in bootstrap */}
-      <div className="container-fluid g-0">
-        <div className="row header-row">
-          <div className="col">
-            <div className="row-content">
-              <Header />
-            </div>
-          </div>
-        </div>
+   
         {/* main content */}
         <div className="row middle-row">
           <div className="col">
@@ -57,15 +49,7 @@ function Handball(props) {
             </div>
           </div>
         </div>
-        {/* footer content */}
-        <div className="row footer-row">
-          <div className="col">
-            <div className="row-content">
-              <Footer />
-            </div>
-          </div>
-        </div>
-      </div>
+    
     </>
   );
 }

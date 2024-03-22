@@ -27,7 +27,7 @@ function Footer() {
       <Box sx={{ width: '100%', zIndex: 9999, bottom: '0px', position: 'relative' }}>
         <BottomNavigation
           sx={{
-            backgroundColor: defaultColors.secondaryColor,
+            backgroundColor: defaultColors.secondary,
             height: '70px',
             color: 'white',
             zIndex: 9999
@@ -127,7 +127,7 @@ function Footer() {
       ) : (
         <footer
           className="footer border-top text-center small text-muted p-2 my-0"
-          style={{ backgroundColor: defaultColors.secondaryColor }}>
+          style={{ backgroundColor: defaultColors.secondary}}>
           <div style={{ color: 'white' }}>
             <Link
               to="/"

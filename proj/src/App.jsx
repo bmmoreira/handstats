@@ -7,6 +7,10 @@ import Home from "./components/pages/Home";
 import HomeGuest from "./components/pages/HomeGuest";
 import Handball from "./components/Handball/Handball";
 import About from "./components/pages/About";
+import Header from "./components/pages/Header";
+import Footer from "./components/pages/Footer";
+import Register from "./components/pages/Register";
+import FlashMessages from "./components/pages/FlashMessages";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -123,7 +127,18 @@ function App() {
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
+                    {/* g-0 is a utility class that sets the margin and padding to 0 in bootstrap */}
+    <div className="container-fluid g-0">
+            <div className="row header-row">
+              <div className="col">
+                <div className="row-content">
+                  <Header />
+                  <FlashMessages messages={state.flashMessages} />
+                </div>
+              </div>
+            </div>
           <Routes>
+    
             <Route
               path="/"
               element={state.loggedIn ? <Home /> : <HomeGuest />}
@@ -132,8 +147,21 @@ function App() {
               path="/handball"
               element={state.loggedIn ? <Handball /> : <Handball />}
             />
+              <Route
+              path="/register"
+              element={<Register />}
+            />
             <Route path="/about" element={<About />} />
+           
           </Routes>
+          <div className="row footer-row">
+              <div className="col">
+                <div className="row-content">
+                  <Footer />
+                </div>
+              </div>
+            </div>
+          </div>
         </BrowserRouter>
       </DispatchContext.Provider>
     </StateContext.Provider>
