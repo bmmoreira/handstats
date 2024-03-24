@@ -120,7 +120,7 @@ function Footer() {
         location.pathname === '/' ||
         location.pathname === '/handball' ||
         location.pathname === '/options' ? (
-          <BottomNav />
+          ''
         ) : (
           ''
         )
