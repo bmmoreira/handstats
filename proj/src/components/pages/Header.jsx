@@ -23,7 +23,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import { roundedButton, defaultColors } from "../Utils/constants.js";
-import appLogo from "../../assets/images/logo_extended.png";
+import appLogo from "../../assets/images/logo_extended2.png";
 
 
 function Header() {

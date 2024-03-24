@@ -73,7 +73,7 @@ const resources = {
       password: "Password",
       register_access: "Register to access",
       home_text_01:
-        "The definitive mobile app designed to revolutionize the way you track and analyze handball statistics during real-time gameplay.",
+        "The definitive web app designed to revolutionize the way you track and analyze handball statistics during real-time gameplay.",
       home_text_02:
         "Whether you're a seasoned coach, a passionate player, or an enthusiastic fan, HandballIsFun is your go-to tool for gaining deep insights into every aspect of the game.",
       about_p_01:
@@ -89,6 +89,7 @@ const resources = {
       please_register: "Please register to access the map functionality.",
       visit_homepage: "You can visit the this link to sign up: ",
       homepage: "HomePage",
+      register: "Register",
     },
   },
   pt: {
@@ -152,7 +153,7 @@ const resources = {
       password: "Senha",
       register_access: "Registre-se para acessar",
       home_text_01:
-        "O aplicativo móvel definitivo projetado para revolucionar a maneira como você monitora e analisa estatísticas de handebol durante jogos em tempo real.",
+        "O aplicativo web definitivo projetado para revolucionar a maneira como você monitora e analisa estatísticas de andebol durante jogos em tempo real.",
       home_text_02:
         "Quer você seja um treinador experiente, um jogador apaixonado ou um torcedor entusiasmado, Handball.IsFun é a ferramenta ideal para obter insights profundos sobre todos os aspectos do jogo.",
       about_p_01:
@@ -169,6 +170,7 @@ const resources = {
         "Por favor registre-se para acessar a funcionalidade do mapa.",
       visit_homepage: "Você pode visitar este link para registrar-se: ",
       homepage: "Página inicial",
+      register: "Registrar-se",
     },
   },
   fr: {
@@ -235,7 +237,7 @@ const resources = {
       password: "Mot de passe",
       register_access: "Inscrivez-vous pour accéder",
       home_text_01:
-        "L'application mobile définitive conçue pour révolutionner la façon dont vous suivez et analysez les statistiques de handball pendant le jeu en temps réel.",
+        "L'application web définitive conçue pour révolutionner la façon dont vous suivez et analysez les statistiques de handball pendant le jeu en temps réel.",
       home_text_02:
         "Que vous soyez un entraîneur chevronné, un joueur passionné ou un fan enthousiaste, Handball.IsFun est votre outil incontournable pour obtenir des informations approfondies sur tous les aspects du jeu.",
       about_p_01:
@@ -252,6 +254,7 @@ const resources = {
       please_register: "Please register to access the map functionality.",
       visit_homepage: "You can visit the this link to sign up: ",
       homepage: "HomePage",
+      register: "Registre",
     },
   },
   es: {
@@ -334,6 +337,7 @@ const resources = {
       please_register: "Please register to access the map functionality.",
       visit_homepage: "You can visit the this link to sign up: ",
       homepage: "HomePage",
+      register: "Registro",
     },
   },
 };

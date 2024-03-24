@@ -104,6 +104,16 @@ body {
   padding: 10px;
 }
 
+.home-buttons {
+  color: #F7FFF7;
+  display: flex;
+  border-radius: 12px;
+  margin: auto;
+  width: 400px;
+  padding: 10px;
+  justify-content: space-between;
+}
+
 
 
 .form-group {

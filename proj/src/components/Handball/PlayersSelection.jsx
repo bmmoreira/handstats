@@ -1,56 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
 import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Fab, Skeleton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Button from '@mui/material/Button';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { ThemeProvider } from '@mui/material/styles';
+import { theme, themeButtonPlayers } from '../Utils/Themes'
+import Box from "@mui/material/Box";
+import PlayersOnBench from "./PlayersOnBench";
+import PlayersOnField from "./PlayersOnField";
+import { use } from "i18next";
 
 function PlayerSelection() {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
-  const theme = createTheme({
-    components: {
-      MuiButton: {
-       
-        styleOverrides: {
-          root: {
-            width: '40px', 
-            height: '40px', 
-            backgroundColor: appState.colors.quaternaryColor, // Change background color of the button
-            '&:hover': {
-              backgroundColor: '#ffe66d',
-              color: '#ff0000', // Change text color on hover
-              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', // Add a box shadow on hover     
-              // Add any other styles you want to change on hover
-            },
-            '&.MuiButton-dark': {
-              backgroundColor: appState.colors.quaternaryColor, // Example color for contained variant
-              color: 'white', // Example text color for contained variant
-            },
-            '&.MuiButton-light': {
-              borderColor: '#f7fff7', // Example border color for outlined variant
-              backgroundColor: '#f7fff7', 
-              color: 'blue', // Example text color for outlined variant
-            },
-            borderRadius: '12px', // Change border radius of the button
-            padding: '12px 24px', // Change padding of the button
-            fontWeight: 'bold', // Change font weight of the button text
-            fontSize: '12px', // Change font size of the button text
-            textTransform: 'uppercase', // Change text transformation of the button text
-            margin: '2px 2px 2px 2px',
-            // Add any other styles you want to apply to all buttons
-          },
-        },
-      },
-    },
-  });
+  const [benchPlayers, setBenchPlayers] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  const [fieldPlayers, setFieldPlayers] = useState([
+    { id: "4", name: "Player 4" },
+    { id: "5", name: "Player 5" },
+    { id: "6", name: "Player 6" }
+  ]);
+
+  
 
   /**
    * State to keep track of selected players.
@@ -66,7 +41,7 @@ function PlayerSelection() {
    * @param {number} playerNumber - The number of the player to toggle.
    * @returns {void}
    */
-  const togglePlayerSelection = (playerNumber) => {
+  const togglePlayerSelectionOnBench = (playerNumber) => {
     if (selectedPlayersBench.includes(playerNumber)) {
       /*
         If the player name is already in the selectedPlayers array, 
@@ -90,7 +65,7 @@ function PlayerSelection() {
         */
       setSelectedPlayersBench([...selectedPlayersBench, playerNumber]);
     }
-    console.log(selectedPlayersBench);
+    console.log('PlayerSelection '+ selectedPlayersBench);
   };
 
   /**
@@ -111,31 +86,46 @@ function PlayerSelection() {
 
 
  
-  function moveToField() {
-    
-    selectedPlayersBench.forEach((playerNumber) => {
-      console.log("player: " + playerNumber);
-      if (playersOnField.includes(playerNumber)) {
-        console.log("player already in playersOnBench array: " + playerNumber);
-      } else {
-        /*
-         If the player name is not in the selectedPlayers array, 
-         it means the player is not currently selected. In this case, 
-         it adds the player name to the selectedPlayers array using the spread operator ..., 
-         effectively selecting the player.
-        */
-         console.log("add player to field array: " + playerNumber);
-         setPlayersOnField([...playersOnField, playerNumber]);
+/**
+ * Moves selected players from bench to field.
+ * 
+ * @param {number[]} arrayBenchSelected - Array of selected player numbers from the bench.
+ * @param {number[]} arrayBench - Array representing players currently on the bench.
+ * @param {number[]} arrayField - Array representing players currently on the field.
+ * @returns {boolean} - True if the operation was successful, otherwise false.
+ */
+function moveToField(arrayBenchSelected, arrayBench, arrayField) {
+  // Iterate through selected players on the bench
+  arrayBenchSelected.forEach((playerNumber) => {
+    console.log("iterating player: " + playerNumber);
 
-         setPlayersOnBench(
-          playersOnBench.filter((value) => value !== playerNumber)
-        );
-        setSelectedPlayersBench(
-          []
-        );
-      }
-    });
-  }
+    // Check if the player is already on the field
+    if (arrayBench.includes(playerNumber)) {
+      // If player is already on field, return false
+      return false;
+    } else {
+      /*
+       * If the player name is not in the selectedPlayers array, 
+       * it means the player is not currently selected. In this case, 
+       * it adds the player name to the selectedPlayers array using the spread operator ..., 
+       * effectively selecting the player.
+       */
+      console.log("add player to field array: " + playerNumber);
+
+      // Add player to field array
+      setPlayersOnField([...arrayBench, playerNumber]);
+
+      // Remove player from bench array
+      setPlayersOnBench(arrayField.filter((value) => value !== playerNumber));
+
+      // Clear selected players from bench
+      setSelectedPlayersBench([]);
+    }
+  });
+  
+  // Return true indicating successful operation
+  return true;
+}
 
   function moveToBench() {
     selectedPlayersField.forEach((playerNumber) => {
@@ -151,6 +141,13 @@ function PlayerSelection() {
     });
   }
 
+  function selectPlayerOnField(playerNumber) {
+    console.log("clicked Active: " + playerNumber);
+    togglePlayerSelectionField(playerNumber);
+    appDispatch({ type: "turnOffActionsView"}); 
+    appDispatch({ type: "playerActive", value: playerNumber });
+  }
+
 /**
  * This function retrieves the data for a specific player.
  *
@@ -161,13 +158,15 @@ const getPlayerData = (playerNumber) => {
   return appState.playersList.find((p) => p.number === playerNumber);
 };
 
-/*   useEffect(() => {
-    console.log("active players: " + activePlayers);
-  }, [activePlayers]); */
+   useEffect(() => {
+    console.log("Number of players on the Field Changed! " + playersOnField);
+  }, [playersOnField]); 
+
+
 
   return (
     <>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeButtonPlayers}>
     <Box
              
               sx={{
@@ -205,40 +204,12 @@ const getPlayerData = (playerNumber) => {
           </div>
           <div className="flex-item">
             <div className="row">
-              <Box
-                display={"flex"}
-                sx={{
-                  backgroundColor: appState.colors.terciaryColor,
-                  width: "400px",
-                  color: "white",
-                  border: "2px solid grey",
-                  borderRadius: "20px",
-                  textAlign: "left",
-                  margin: "5px",
-                  minHeight: "150px",
-                }}
-              >
-                <Grid container spacing={0}>
-                  {playersOnBench.map((number, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
-                      <Button
-                        variant={
-                          selectedPlayersBench.includes(number)
-                            ? "light"
-                            : "dark"
-                        }
-                        size="large"
-                        onClick={() => {
-                          console.log("clicked: " + number);
-                          togglePlayerSelection(number);
-                        }}
-                      >
-                        {number}
-                      </Button>
-                    </Grid>
-                  ))}
-                </Grid>
-              </Box>
+              {/* Players on Bench*/}
+              <PlayersOnBench 
+                togglePlayerSelection={togglePlayerSelectionOnBench} 
+                playersBenchList={benchPlayers}
+                selectedPlayersBenchList={selectedPlayersBench}
+                />
             </div>
           </div>
           <div className="flex-item">
@@ -274,8 +245,10 @@ const getPlayerData = (playerNumber) => {
                 variant="dark"
                 size="sm"
                 onClick={() => {
-                  console.log("arrow down clicked: " + selectedPlayersBench);
-                  moveToField();
+                  console.log("Arrow down clicked: " + selectedPlayersBench);
+                  moveToField(selectedPlayersBench,playersOnBench,playersOnField)? 
+                  console.log("player added to field array") :
+                  console.log("player already in playersOnBench array: " + playerNumber);
                   //appDispatch({ type: "playersOnField", value: player.number });
                 }}
               >
@@ -300,43 +273,11 @@ const getPlayerData = (playerNumber) => {
               </Box>
             </div>
             <div className="row">
-              <Box
-                height={150}
-                width={400}
-                display={"inline-block"}
-                sx={{
-                  backgroundColor: appState.colors.terciaryColor,
-                  color: "white",
-                  border: "2px solid grey",
-                  borderRadius: "20px",
-                  textAlign: "right",
-                  margin: "5px",
+           
+
+                <PlayersOnField selectPlayerOnField={selectPlayerOnField} playersOnField={playersOnField}/>
                  
-                }}
-              >
-                <Grid container spacing={0}>
-                  {playersOnField.map((playerNumber, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
-                      <Button
-                        size="lg"
-                        variant={
-                          selectedPlayersField.includes(playerNumber)
-                            ? "light"
-                            : "dark"
-                        }
-                        onClick={() => {
-                          console.log("clicked Active: " + playerNumber);
-                          togglePlayerSelectionField(playerNumber);
-                          appDispatch({ type: "turnOffActionsView"}); 
-                          appDispatch({ type: "playerActive", value: playerNumber });
-                        }}
-                      >
-                        {playerNumber}
-                      </Button>
-                    </Grid>
-                  ))}
-                </Grid>
-              </Box>
+             
             </div>
           </div>
         </div>
