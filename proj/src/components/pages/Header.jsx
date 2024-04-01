@@ -49,6 +49,10 @@ function Header() {
           <IconButton
             onClick={() => {
               console.log("Menu Clicked!");
+              appDispatch({
+                type: 'toggleDrawer',
+                value: !appState.drawer
+              });
             }}
             size="large"
             edge="start"

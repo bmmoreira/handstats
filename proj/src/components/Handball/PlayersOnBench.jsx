@@ -1,53 +1,46 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import StateContext from "../../StateContext";
 import Grid from "@mui/material/Grid";
-import Button from '@mui/material/Button';
-import { ThemeProvider } from '@mui/material/styles';
-import { themeButtonPlayers } from '../Utils/Themes'
+import Button from "@mui/material/Button";
+import { ThemeProvider } from "@mui/material/styles";
+import { themeButtonPlayers, boxBench } from "../Utils/Themes";
+import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 function PlayersOnBench(props) {
-   
-    const appState = useContext(StateContext);
+  const appState = useContext(StateContext);
 
-    return (
-        <>
-        <ThemeProvider theme={themeButtonPlayers}>
-        <Box
-                display={"flex"}
-                sx={{
-                  backgroundColor: appState.colors.terciaryColor,
-                  width: "400px",
-                  color: "white",
-                  border: "2px solid grey",
-                  borderRadius: "20px",
-                  textAlign: "left",
-                  margin: "5px",
-                  minHeight: "150px",
-                }}
-              >
-                <Grid container spacing={0}>
-                  {props.playersBenchList.map((number, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
-                      <Button
-                        variant={
-                          props.selectedPlayersBenchList.includes(number)
-                            ? "light"
-                            : "dark"
-                        }
-                        size="large"
-                        onClick={() => {
-                          console.log("clicked: " + number);
-                          props.togglePlayerSelection(number);
-                        }}
-                      >
-                        {number}
-                      </Button>
-                    </Grid>
-                  ))}
+  return (
+    <>
+      <ThemeProvider theme={themeButtonPlayers}>
+        <Box display={"flex"} sx={{ ...boxBench }}>
+          <Grid container spacing={0}>
+            {/* Assuming `playerList` is an array of objects where each object has 
+                  a `state` property, you can filter the array to only include players 
+                  with 'B' in their state. Then, you can map over the filtered array 
+                  to create a list of buttons*/}
+             {appState.playerList
+              .filter((player) => player.state.includes("B"))
+              .map((player, index) => (
+                <Grid item xs={12} sm={6} md={4} key={index}>
+                  <Button
+                    variant={
+                      appState.playersSelected.includes(player.number) ? "selected" : "dark"
+                    }
+                    size="large"
+                    onClick={() => {
+                      console.log("clicked: " + player.number);
+                      props.togglePlayer(player.number);
+                    }}
+                  >
+                    <Typography variant="h3">{player.number}</Typography>
+                    <Typography variant="h5">{player.nickname}</Typography>
+                  </Button>
                 </Grid>
-              </Box>
-        </ThemeProvider>
+              ))}
+          </Grid>
+        </Box>
+      </ThemeProvider>
     </>
   );
 }

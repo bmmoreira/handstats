@@ -11,13 +11,16 @@ import Header from "./components/pages/Header";
 import Footer from "./components/pages/Footer";
 import Register from "./components/pages/Register";
 import FlashMessages from "./components/pages/FlashMessages";
+import AppDrawer from "./components/Drawer/AppDrawer";
+import Timeline from "./components/Handball/Timeline";
+import Statistics from "./components/Handball/Statistics";
+import { playersList } from "./components/Utils/constants";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import ShootingAction from "./components/Handball/ShootingAction";
 
 function App() {
   const [count, setCount] = useState(0);
-
-  const [playerACtive, setPlayersActive] = useState(0);
 
   const initialState = {
     loggedIn: Boolean(localStorage.getItem("aStatsToken")),
@@ -28,33 +31,17 @@ function App() {
       avatar: localStorage.getItem("aStatsAvatar"),
       email: localStorage.getItem("aStatsEmail"),
     },
-    playersList: [
-      { name: "Jogador1", number: 1 },
-      { name: "Jogador2", number: 2 },
-      { name: "Jogador3", number: 3 },
-      { name: "Jogador4", number: 4 },
-      { name: "Jogador5", number: 5 },
-      { name: "Jogador6", number: 6 },
-      { name: "Jogador7", number: 7 },
-      { name: "Jogador8", number: 8 },
-      { name: "Jogador9", number: 9 },
-    ],
-    playersSelected: [
-      { name: "Jogador1", number: 1 },
-      { name: "Jogador2", number: 2 },
-      { name: "Jogador3", number: 3 },
-      { name: "Jogador4", number: 4 },
-      { name: "Jogador5", number: 5 },
-      { name: "Jogador6", number: 6 },
-      { name: "Jogador7", number: 7 },
-      { name: "Jogador8", number: 8 },
-      { name: "Jogador9", number: 9 },
-    ],
-
+    playerList: playersList,
+    playersSelected: [],
     playerActive: 0,
     playersOnBench: [1, 2, 3, 4, 5, 6, 7, 8, 9],
     playersOnField: [],
+    shotFrom: "",
+    shotEnd: "",
+    shotResult: "",
     gameTime: 0,
+    gameScoreboardHome: 0,
+    gameScoreboardAway: 0,
     field_bg_color: "#1a535c",
     colors: {
       primaryColor: "#f7fff7",
@@ -66,7 +53,9 @@ function App() {
     isVisibleAttackButtons: false,
     isVisibleDefenseButtons: false,
     isVisibleSactionButtons: false,
+    shootingActionDialogOpen: false,
     gameActions: [],
+    drawer: false,
   };
 
   /**
@@ -89,7 +78,7 @@ function App() {
       case "flashMessages":
         draft.flashMessages.push(action.value);
         break;
-      case "playerActive":
+      case "updatePlayerActive":
         draft.playerActive = action.value;
         break;
       case "playersOnBench":
@@ -97,6 +86,19 @@ function App() {
         break;
       case "playersOnField":
         draft.playersOnField = action.value;
+        break;
+      case "updateScoreboardHome":
+        draft.gameScoreboardHome = action.value;
+        break;
+      case "updateScoreboardAway":
+        draft.gameScoreboardAway = action.value;
+        break;
+      case "updatePlayerList":
+        draft.playerList = action.value;
+        draft.playerActive = 0;
+        break;
+      case "updatePlayerSelected":
+        draft.playersSelected = action.value;
         break;
       case "isVisibleAttackButtons":
         draft.isVisibleAttackButtons = action.value;
@@ -111,9 +113,35 @@ function App() {
         draft.isVisibleSanctionButtons = false;
         draft.isVisibleDefenseButtons = false;
         draft.isVisibleAttackButtons = false;
-      break;
+        break;
       case "gameActions":
         draft.gameActions.push(action.value);
+        draft.isVisibleSanctionButtons = false;
+        draft.isVisibleDefenseButtons = false;
+        draft.isVisibleAttackButtons = false;
+        break;
+      case "shootingActionDialogOpen":
+        draft.shootingActionDialogOpen = action.value;
+        break;
+      case "setShootingFrom":
+        draft.shotFrom = action.value;
+        break;
+      case "setShootingEnd":
+        draft.shotEnd = action.value;
+        draft.shootingActionDialogOpen = action.dialogValue;
+        break;
+      case "setShootingResult":
+        draft.shotEnd = action.value;
+        break;
+      case "resetShootingAction":
+        draft.shotEnd = "";
+        draft.shotFrom = "";
+        draft.shotResult = "";
+        draft.playerActive = 0;
+        draft.playersSelected = [];
+        break;
+      case "toggleDrawer":
+        draft.drawer = action.value;
         break;
     }
   }
@@ -127,9 +155,9 @@ function App() {
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
-                    {/* g-0 is a utility class that sets the margin and padding to 0 in bootstrap */}
-    <div className="container-fluid g-0">
-            <div className="row header-row">
+          {/* g-0 is a utility class that sets the margin and padding to 0 in bootstrap */}
+          <div className="container-fluid g-0">
+            <div className="row header-row g-0">
               <div className="col">
                 <div className="row-content">
                   <Header />
@@ -137,24 +165,21 @@ function App() {
                 </div>
               </div>
             </div>
-          <Routes>
-    
-            <Route
-              path="/"
-              element={state.loggedIn ? <Home /> : <HomeGuest />}
-            />
-            <Route
-              path="/handball"
-              element={state.loggedIn ? <Handball /> : <Handball />}
-            />
+            <Routes>
               <Route
-              path="/register"
-              element={<Register />}
-            />
-            <Route path="/about" element={<About />} />
-           
-          </Routes>
-          <div className="row footer-row">
+                path="/"
+                element={state.loggedIn ? <Home /> : <HomeGuest />}
+              />
+              <Route
+                path="/handball"
+                element={state.loggedIn ? <Handball /> : <Handball />}
+              />
+              <Route path="/register" element={<Register />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/game-timeline" element={<Timeline />} />
+              <Route path="/game-statistics" element={<Statistics />} />
+            </Routes>
+            <div className="row footer-row g-0">
               <div className="col">
                 <div className="row-content">
                   <Footer />
@@ -162,6 +187,8 @@ function App() {
               </div>
             </div>
           </div>
+          <AppDrawer />
+          <ShootingAction />
         </BrowserRouter>
       </DispatchContext.Provider>
     </StateContext.Provider>

@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import Axios from "axios";
-import Image from "react-bootstrap/Image";
 import { useImmerReducer } from "use-immer";
 import DispatchContext from "../../DispatchContext";
 import { CSSTransition } from "react-transition-group";
 import { LOGIN_URL, PASSMINLENGHT } from "../Utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import appLogo from "../../assets/images/logo_hb01.png";
-import logo from "../../assets/svg/logo-01.svg";
-
 import { defaultColors } from "../Utils/constants";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Button } from "@mui/material";

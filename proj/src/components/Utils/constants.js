@@ -125,6 +125,30 @@ export const buttonStyle = {
   }
 };
 
+
+export const playersList = [
+  { name: "Afonso Simoes", nickname: 'Simoes', number: 1, id: 1, active: false, state: 'B', selected: false, pos: "PD" },
+  { name: "Alexandre Silva", nickname: 'Silva', number: 2, id: 2, active: false, state: 'B', selected: false, pos: "PV" },
+  { name: "Christian Rato", nickname: 'Rato', number: 3, id: 3, active: false, state: 'B', selected: false, pos: "LE" },
+  { name: "Diogo Antunes", nickname: 'Antunes', number: 4, id: 4, active: false, state: 'B', selected: false, pos: "PV" },
+  { name: "Goncalo Cardoso", nickname: 'Cardoso', number: 5, id: 5, active: false, state: 'B', selected: false, pos: "PD" },
+  { name: "Joao Porta­rio", nickname: 'Porta­rio', number: 6, id: 6, active: false, state: 'B', selected: false, pos: "PE" },
+  { name: "Lui­s Freitas", nickname: 'Freitas', number: 7, id: 7, active: false, state: 'B', selected: false, pos: "PV" },
+  { name: "Miguel Silvario", nickname: 'Silvario', number: 8, id: 8, active: false, state: 'B', selected: false, pos: "LD" },
+  { name: "Pedro Pires", nickname: 'Pires', number: 9, id: 9, active: false, state: 'B', selected: false, pos: "C" },
+  { name: "Rodrigo Rocha", nickname: 'Rocha', number: 10, id: 10, active: false, state: 'B', selected: false, pos: "LE" },
+  { name: "Tiago Sousa", nickname: 'Sousa', number: 11, id: 11, active: false, state: 'B', selected: false, pos: "PD" },
+  { name: "Tomas Campos", nickname: 'Campos', number: 12, id: 12, active: false, state: 'F', selected: false, pos: "LD" },
+  { name: "Filipe Silva", nickname: 'Silva', number: 13, id: 13, active: false, state: 'F', selected: false, pos: "LE" },
+  { name: "Martim Brito", nickname: 'Brito', number: 14, id: 14, active: false, state: 'F', selected: false, pos: "GR" },
+  { name: "Miguel Virgario", nickname: 'Virgario', number: 15, id: 15, active: false, state: 'F', selected: false, pos: "C" },
+  { name: "Orlando Quenduca", nickname: 'Quenduca', number: 16, id: 16, active: false, state: 'F', selected: false, pos: "GR" },
+  { name: "Rafael Ferreira", nickname: 'R. Ferreira', number: 17, id: 17, active: false, state: 'F', selected: false, pos: "PE" },
+  { name: "Tomas Ferreira", nickname: 'T. Ferreira', number: 18, id: 18, active: false, state: 'F', selected: false, pos: "PD" },
+  { name: "Mauro Rodrigues", nickname: 'Rodrigues', number: 19, id: 19, active: false, state: '0', selected: false, pos: "PE" },
+];
+
+
 export class Player {
   constructor(name, id) {
       this.name = name;

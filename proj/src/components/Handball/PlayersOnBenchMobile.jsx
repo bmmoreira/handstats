@@ -1,28 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 import StateContext from "../../StateContext";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
-import { themeButtonPlayers, boxField } from "../Utils/Themes";
+import { themeButtonPlayers, boxBench } from "../Utils/Themes";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
-function PlayersOnField(props) {
+function PlayersOnBench(props) {
   const appState = useContext(StateContext);
 
   return (
     <>
       <ThemeProvider theme={themeButtonPlayers}>
-        <Box display={"flex"} sx={{ ...boxField }}>
+        <Box display={"flex"} sx={{ ...boxBench }}>
           <Grid container spacing={0}>
             {/* Assuming `playerList` is an array of objects where each object has 
                   a `state` property, you can filter the array to only include players 
                   with 'B' in their state. Then, you can map over the filtered array 
                   to create a list of buttons*/}
-            {appState.playerList
-              .filter((player) => player.state.includes("F"))
+             {appState.playerList
+              .filter((player) => player.state.includes("B"))
               .map((player, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
+                <Grid  key={index}>
                   <Button
                     variant={
                       appState.playersSelected.includes(player.number) ? "selected" : "dark"
@@ -45,4 +45,4 @@ function PlayersOnField(props) {
   );
 }
 
-export default PlayersOnField;
+export default PlayersOnBench;

@@ -173,7 +173,7 @@ const playerActions = [
 const playersList = [
     {
         id: 1,
-        name: "Afonso SimÃµes",
+        name: "Afonso Simoes",
         pos: "PD",
         number: 36,
     },

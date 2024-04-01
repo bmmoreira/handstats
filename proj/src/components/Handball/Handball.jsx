@@ -16,7 +16,7 @@ function Handball(props) {
     <>
    
         {/* main content */}
-        <div className="row middle-row">
+        <div className="row middle-row g-0">
           <div className="col">
             <div className="row-content">
               <div className="container">

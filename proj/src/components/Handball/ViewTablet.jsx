@@ -7,7 +7,7 @@ import StatsView from "./StatsView";
 import ActionsButtons from "./ActionsButtons";
 import FieldView from "./FieldView";
 import { ThemeProvider } from "@mui/material/styles";
-import { themeButtonPlayer } from "../Utils/Themes";
+import { themeButtonPlayers } from "../Utils/Themes";
 import Button from "@mui/material/Button";
 import "./handball.css";
 
@@ -26,7 +26,7 @@ function HandballDesktop(props) {
             <div className="row-content">
               <div className="container">
                 <div className="row">
-                <ThemeProvider theme={themeButtonPlayer}>
+                <ThemeProvider theme={themeButtonPlayers}>
                   {/* Content within the ThemeProvider */}
                 
                   {/* First Main Column - Players in Bench and Active */}
