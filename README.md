@@ -14,7 +14,7 @@ Esta aplicação é um dos projetos finais do Curso CESAE DIGITAL FrontEnd Devel
 - Alexandre Novas, 
 - Bruno Moreira, 
 - Carina Coelho, **This is bold text to be tested**
-- João Souza, 
+- João Sousa, 
 - Nuno Soares. **This is bold text to be tested**
 
 ### Cliente Tutor: 
