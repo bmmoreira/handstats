@@ -7,7 +7,8 @@ import { LOGIN_URL, PASSMINLENGHT } from "../Utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { defaultColors } from "../Utils/constants";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import { themeRegisterPage } from "../Utils/Themes";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 
@@ -15,42 +16,7 @@ import Box from "@mui/material/Box";
 Adding validation and automatically log in a successfully registered user
 */
 
-const theme = createTheme({
-  components: {
-   
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          width: "380px",
-          height: "42px",
-          backgroundColor: defaultColors.secondary, 
-          borderRadius: "63.55px", 
-          padding: "12px 24px", 
-          fontWeight: "bold", 
-          fontSize: "12px", 
-          textTransform: "uppercase", 
-          margin: "12px 2px 2px 2px",
-          "&:hover": {
-            backgroundColor: "#ffe66d",
-            color: "#ff0000", 
-            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", 
-          },
-          "&.MuiButton-dark": {
-            backgroundColor: defaultColors.quaternary, // Example color for contained variant
-            color: "white", // Example text color for contained variant
-          },
-          "&.MuiButton-light": {
-            borderColor: "#f7fff7", // Example border color for outlined variant
-            backgroundColor: "#f7fff7",
-            color: "blue", // Example text color for outlined variant
-          },
-         
-          // Add any other styles you want to apply to all buttons
-        },
-      },
-    },
-  },
-});
+
 
 function Register() {
   const { t } = useTranslation();
@@ -410,7 +376,7 @@ function Register() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeRegisterPage}>
         <div className="row middle-row" style={{backgroundColor: defaultColors.quaternary}}>
           <div className="col d-flex justify-content-center align-items-center">
             <div className="row-content border-0 d-flex justify-content-center align-items-center">

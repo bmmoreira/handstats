@@ -67,8 +67,8 @@ export const themeButtonPlayers = createTheme({
       styleOverrides: {
         root: {
           display: "block",
-          width: "60px",
-          height: "60px",
+          width: "80px",
+          height: "80px",
           backgroundColor: defaultColors.secondary, // Change background color of the button
           "&:hover": {
             backgroundColor: defaultColors.quaternary,
@@ -154,7 +154,28 @@ export const themeButtonHome = createTheme({
   },
 });
 
-
+export const actionButtonsMobile = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          width: "80px",
+          backgroundColor: defaultColors.quaternary,
+          "&:hover": {
+            backgroundColor: "#ffe66d",
+            color: "#ff0000",
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+          },
+          borderRadius: "18px",
+          padding: "12px 24px",
+          fontWeight: "bold",
+          fontSize: "12px",
+          textTransform: "uppercase",
+        },
+      },
+    },
+  },
+});
 
 export const boxBench = {
   backgroundColor: defaultColors.terciary,
@@ -186,3 +207,330 @@ export const boxFieldMobile = {
   margin: "5px",
   
 };
+
+export const themeRegisterPage = createTheme({
+  components: {
+   
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          width: "380px",
+          height: "42px",
+          backgroundColor: defaultColors.secondary, 
+          borderRadius: "63.55px", 
+          padding: "12px 24px", 
+          fontWeight: "bold", 
+          fontSize: "12px", 
+          textTransform: "uppercase", 
+          margin: "12px 2px 2px 2px",
+          "&:hover": {
+            backgroundColor: "#ffe66d",
+            color: "#ff0000", 
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", 
+          },
+          "&.MuiButton-dark": {
+            backgroundColor: defaultColors.quaternary, // Example color for contained variant
+            color: "white", // Example text color for contained variant
+          },
+          "&.MuiButton-light": {
+            borderColor: "#f7fff7", // Example border color for outlined variant
+            backgroundColor: "#f7fff7",
+            color: "blue", // Example text color for outlined variant
+          },
+         
+          // Add any other styles you want to apply to all buttons
+        },
+      },
+    },
+
+  },
+});
+
+
+export const buttonFieldSecondRow = createTheme({
+  typography: {
+    h5: {
+      fontSize: "0.575rem",
+      color: "white",
+    },
+    h4: {
+      fontSize: "1.5rem",
+      color: "white",
+    },
+    h3: {
+      fontSize: "0.875rem",
+      color: "white",
+    },
+  },
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'selected', size: "large" },
+          style: {
+            backgroundColor: 'brown', // Example color
+            color: 'white',
+            // Add any other styles you want to customize
+          },
+        },
+        {
+          props: { variant: 'active', size: "large" },
+          style: {
+            backgroundColor: 'orange', // Example color
+            color: 'white',
+            border: '2px solid red',
+            // Add any other styles you want to customize
+          },
+        },
+        {
+          props: { variant: 'gk', size: "large" },
+          style: {
+            backgroundColor: 'orange', // Example color
+            color: 'white',
+            border: '1px solid white',
+            // Add any other styles you want to customize
+          },
+        },
+        // Add more variants as needed for other combinations of variant and size
+      ],
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: defaultColors.quaternary,
+            color: "#ff0000", 
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", 
+          },
+          "&.MuiButton-dark": {
+            backgroundColor: '#4cbd96', 
+            color: "white", 
+          },
+          "&.MuiButton-light": {
+            borderColor: "#f7fff7", 
+            backgroundColor: "blue",
+            color: "blue", 
+          },
+          display: "block",
+          width: "23%",
+          height: "80px",
+          backgroundColor: defaultColors.quaternary, 
+          borderRadius: "12px", 
+          padding: "5px 0px", 
+          fontWeight: "bold", 
+          fontSize: "12px", 
+          textTransform: "uppercase", 
+          margin: "2px 2px 2px 2px",
+          textAlign: "center",
+        },
+      },
+    },
+  },
+});
+
+export const buttonFieldFirstdRow = createTheme({
+  typography: {
+    h5: {
+      fontSize: "0.575rem",
+      color: "white",
+    },
+    h4: {
+      fontSize: "1.5rem",
+      color: "white",
+    },
+    h3: {
+      fontSize: "0.875rem",
+      color: "white",
+    },
+  },
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'selected', size: "large" },
+          style: {
+            backgroundColor: 'brown', // Example color
+            color: 'white',
+            // Add any other styles you want to customize
+          },
+        },
+        {
+          props: { variant: 'active', size: "large" },
+          style: {
+            backgroundColor: 'orange', // Example color
+            color: 'white',
+            border: '2px solid red',
+            // Add any other styles you want to customize
+          },
+        },
+        {
+          props: { variant: 'gk', size: "large" },
+          style: {
+            backgroundColor: 'orange', // Example color
+            color: 'white',
+            border: '1px solid white',
+            // Add any other styles you want to customize
+          },
+        },
+        // Add more variants as needed for other combinations of variant and size
+      ],
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: defaultColors.quaternary,
+            color: "#ff0000", 
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", 
+          },
+          "&.MuiButton-dark": {
+            backgroundColor: '#4cbd96', 
+            color: "white", 
+          },
+          "&.MuiButton-light": {
+            borderColor: "#f7fff7", 
+            backgroundColor: "blue",
+            color: "blue", 
+          },
+          display: "block",
+          width: "23%",
+          height: "80px",
+          backgroundColor: defaultColors.quaternary, 
+          borderRadius: "12px", 
+          padding: "5px 0px", 
+          fontWeight: "bold", 
+          fontSize: "12px", 
+          textTransform: "uppercase", 
+          margin: "2px 2px 2px 2px",
+          textAlign: "center",
+        },
+      },
+    },
+  },
+});
+
+export const actionButtons = createTheme({
+  typography: {
+    h5: {
+      fontSize: "0.575rem",
+      color: "white",
+    },
+    h4: {
+      fontSize: "1.5rem",
+      color: "white",
+    },
+    h3: {
+      fontSize: "0.875rem",
+      color: "white",
+    },
+  },
+  
+  components: {
+    MuiIconButton: {
+      variants: [
+        {
+          props: { variant: 'selected', size: "large" },
+          style: {
+            backgroundColor: 'brown', // Example color
+            color: 'white',
+            
+          },
+        },
+      ],
+      styleOverrides: {
+        root: {
+          
+          "&:hover": {
+            backgroundColor: '#f0f0f0',
+            color: "#1a535c",
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", 
+          },
+          "&.MuiButton-dark": {
+            backgroundColor: defaultColors.quaternary, 
+            color: "white", 
+          },
+          "&.MuiButton-light": {
+            borderColor: "#f7fff7", 
+            backgroundColor: "blue",
+            color: "white", 
+            alignContent: 'center',
+          },
+          backgroundColor: 'gray', 
+          borderRadius: "12px", 
+          padding: "0px 0px",
+          fontWeight: "bold", 
+          fontSize: "12px", 
+          textTransform: "uppercase", 
+          margin: "2px 2px 2px 2px",
+          color: "white",
+          display: "block",
+          width: "20%",
+          height: "60px",
+          padding: "5px",
+          justifyContent: 'center'
+        },
+      },
+    },
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'selected', size: "large" },
+          style: {
+            backgroundColor: 'brown', // Example color
+            color: 'white',
+            // Add any other styles you want to customize
+          },
+        },
+        {
+          props: { variant: 'active', size: "large" },
+          style: {
+            backgroundColor: 'orange', // Example color
+            color: 'white',
+            border: '2px solid red',
+            // Add any other styles you want to customize
+          },
+        },
+        {
+          props: { variant: 'gk', size: "large" },
+          style: {
+            backgroundColor: 'orange', // Example color
+            color: 'white',
+            border: '1px solid white',
+            // Add any other styles you want to customize
+          },
+        },
+        // Add more variants as needed for other combinations of variant and size
+      ],
+      styleOverrides: {
+        root: {
+          
+          backgroundColor: defaultColors.secondary, // Change background color of the button
+          "&:hover": {
+            backgroundColor: 'pink',
+            color: "#ff0000", // Change text color on hover
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", // Add a box shadow on hover
+            // Add any other styles you want to change on hover
+          },
+          "&.MuiButton-dark": {
+            backgroundColor: defaultColors.quaternary, // Example color for contained variant
+            color: "white", // Example text color for contained variant
+          },
+          "&.MuiButton-light": {
+            borderColor: "#f7fff7", 
+            backgroundColor: "blue",
+            color: "white", 
+            alignContent: 'center',
+            
+          },
+          borderRadius: "12px", 
+          padding: "0px 0px",
+          fontWeight: "bold", 
+          fontSize: "12px", 
+          textTransform: "uppercase", 
+          margin: "2px 2px 2px 2px",
+          display: "block",
+          width: "23%",
+          height: "60px",
+          padding: "5px",
+          justifyContent: 'center'
+        },
+      },
+    },
+  },
+});

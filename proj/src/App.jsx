@@ -18,6 +18,8 @@ import { playersList } from "./components/Utils/constants";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import ShootingAction from "./components/Handball/ShootingAction";
+import BottomDrawer from "./components/Handball/BottomDrawer";
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -56,6 +58,7 @@ function App() {
     shootingActionDialogOpen: false,
     gameActions: [],
     drawer: false,
+    drawerBottom: false,
   };
 
   /**
@@ -143,6 +146,9 @@ function App() {
       case "toggleDrawer":
         draft.drawer = action.value;
         break;
+      case "toggleDrawerBottom":
+        draft.drawerBottom = action.value;
+        break;
     }
   }
   /*
@@ -189,6 +195,7 @@ function App() {
           </div>
           <AppDrawer />
           <ShootingAction />
+         
         </BrowserRouter>
       </DispatchContext.Provider>
     </StateContext.Provider>

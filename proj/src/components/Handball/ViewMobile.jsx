@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
-import ActionButtons from "./ActionsButtons";
+import ActionButtonsMobile from "./ActionsButtonsMobile";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { themeButtonPlayers } from "../Utils/Themes";
@@ -33,9 +33,10 @@ function ViewMobile(props) {
                 <div className="row gx-0"  style={{backgroundColor: 'green'}}>
                 <HandballField/>
                </div>
-                <div className="row gx-0" style={{backgroundColor: 'yellow', height: '105px'}}><ActionButtons/></div>
+                <div className="row gx-0" style={{backgroundColor: 'yellow', height: '105px'}}><ActionButtonsMobile/></div>
                 <div className="row gx-0" style={{backgroundColor: 'blue', }}><PlayersOnFieldMobile/></div>
-                <div className="row gx-0" style={{backgroundColor: 'blue', }}><PlayersOnBenchMobile/></div>
+                {/* <div className="row gx-0" style={{backgroundColor: 'blue', }}><PlayersOnBenchMobile/></div> */}
+                
                 </div>
                 </div>
                 </ThemeProvider>

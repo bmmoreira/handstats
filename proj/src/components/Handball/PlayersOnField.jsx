@@ -13,7 +13,7 @@ function PlayersOnField(props) {
   return (
     <>
       <ThemeProvider theme={themeButtonPlayers}>
-        <Box display={"flex"} sx={{ ...boxField }}>
+       
           <Grid container spacing={0}>
             {/* Assuming `playerList` is an array of objects where each object has 
                   a `state` property, you can filter the array to only include players 
@@ -22,7 +22,7 @@ function PlayersOnField(props) {
             {appState.playerList
               .filter((player) => player.state.includes("F"))
               .map((player, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
+                <Grid  key={index}>
                   <Button
                     variant={
                       appState.playersSelected.includes(player.number) ? "selected" : "dark"
@@ -39,7 +39,7 @@ function PlayersOnField(props) {
                 </Grid>
               ))}
           </Grid>
-        </Box>
+        
       </ThemeProvider>
     </>
   );
