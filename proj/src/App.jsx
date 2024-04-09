@@ -10,6 +10,8 @@ import About from "./components/pages/About";
 import Header from "./components/pages/Header";
 import Footer from "./components/pages/Footer";
 import Register from "./components/pages/Register";
+import Team from "./components/pages/Team";
+import Player from "./components/pages/Player";
 import FlashMessages from "./components/pages/FlashMessages";
 import AppDrawer from "./components/Drawer/AppDrawer";
 import Timeline from "./components/Handball/Timeline";
@@ -178,6 +180,8 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/game-timeline" element={<Timeline />} />
               <Route path="/game-statistics" element={<Statistics />} />
+              <Route path="/team" element={<Team />} /> 
+              <Route path="/player" element={<Player/>} /> 
             </Routes>
             <div className="row footer-row g-0">
               <div className="col">

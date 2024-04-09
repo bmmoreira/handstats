@@ -398,7 +398,7 @@ function Register() {
             type: "flashMessages",
             value: "Congrats! Welcome to your new account",
           });
-          navigate(`/handball`);
+          navigate(`/team`);
         } catch (error) {
           console.log(error);
         }
