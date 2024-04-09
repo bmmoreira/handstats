@@ -11,7 +11,7 @@ import { themeButtonPlayer } from "../Utils/Themes";
 import Button from "@mui/material/Button";
 import { ButtonGroup } from "@mui/material";
 import "./handball.css";
-import { Box, border, borderRight, width } from "@mui/system";
+import { Box, border, borderLeft, borderRight, width } from "@mui/system";
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -20,15 +20,15 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import Grid from '@mui/material/Grid';
-
-
+import Link from '@mui/material/Link';
+import Item from '@mui/material/Grid';
 
 function Handball(props) {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
 const countDownTable = (
-    <div className="row row-no-gutters sm-2 md-4" style={{width: '106%', height: '30%', backgroundColor: '#1F6372'}}>
+    <div className="row row-no-gutters sm-2 md-4" style={{width: '106%', height: '25%', backgroundColor: '#1F6372'}}>
         <div id="topBar" className="col-12" style={{height: '15%', background: '#FF6B6B', textAlign: 'bottom', borderBottomLeftRadius: 15, borderBottomRightRadius: 15}}>
         <div className="col-12 mt-1">HandStats</div>
         </div>
@@ -39,12 +39,12 @@ const countDownTable = (
             
             <Box className= "row justify-content-evenly mt-4 p-0 m-0">
                 <div className= "col-4 sm-6 ms-5 mb-5" orientation= 'vertical' style={{width: '30%', height: 4, background: '#C0FEFA', borderRadius: 1.90}}>
-                    <div className="col-12 mt-2" style={{color: 'white', fontSize: 17, fontFamily: 'Roboto'}}>Team Name</div>
-                    <div className="col-12 mt-2" style={{color: "#FFE66D", fontSize: 30, fontFamily: 'Roboto'}}>1</div>
+                    <div className="col-12 mt-2" style={{color: 'white', fontSize: '1rem', fontFamily: 'Roboto'}}>Team Name</div>
+                    <div className="col-12 mt-2" style={{color: "#FFE66D", fontSize: '2rem', fontFamily: 'Roboto'}}>23</div>
                 </div>
                 <div className= "col-4 sm-6 me-5 mb-5" orientation= 'vertical' style={{width: '30%', height: 4, background: '#C0FEFA', borderRadius: 1.90}}>
-                    <div className="col-12 mt-2" style={{color: 'white', fontSize: 17, fontFamily: 'Roboto'}}>Team Name</div>
-                    <div className="col-12 mt-2" style={{color: 'white', fontSize: 30, fontFamily: 'Roboto'}}>0</div>
+                    <div className="col-12 mt-2" style={{color: 'white', fontSize: '1rem', fontFamily: 'Roboto'}}>Team Name</div>
+                    <div className="col-12 mt-2" style={{color: 'white', fontSize: '2rem', fontFamily: 'Roboto'}}>20</div>
                 </div>
             </Box>
         </div>
@@ -52,38 +52,41 @@ const countDownTable = (
     )
 
 const actionsButtonsTimeline = (
-<div className="row row-no-gutters"  style={{width: '106%', height: '30%', backgroundColor: '#1F6372'}}>
-        
-        <ButtonGroup className="col p-0 justify-content-evenly align-items-center" orientation= 'vertical'>                        
+<div className="row"  style={{width: '106%', height: '32%', backgroundColor: '#1F6372'}}>
+        <ButtonGroup className="col p-0 justify-content-evenly align-items-center mb-3 mt-1" orientation= 'vertical'>                        
             <Button className="px-5" id="arrowLeft" style={{width: 150, height: 40, color: 'white', border: "solid grey", borderRadius: 5}}>
+            {/* is an offensive strategy in handball. In a fast break, a team attempts to move the ball up court and into scoring position as 
+            quickly as possible, so that the defense is out numbered and does not have time to set up. */}
             <svg viewBox="0 0 30 15"  xmlns="http://www.w3.org/2000/svg">
-            <path id="Arrow 16" d="M0.792892 6.79289C0.402369 7.18342 0.402369 7.81658 0.792892 8.20711L7.15685 14.5711C7.54738 14.9616 8.18054 14.9616 8.57107 14.5711C8.96159 14.1805 8.96159 13.5474 8.57107 13.1569L2.91421 7.5L8.57107 1.84315C8.96159 1.45262 8.96159 0.819457 8.57107 0.428932C8.18054 0.0384078 7.54738 0.0384078 7.15685 0.428932L0.792892 6.79289ZM24.5 6.5L1.5 6.5V8.5L24.5 8.5V6.5Z" fill="#FFE66D"/>
+                <path id="Arrow left" d="M0.792892 6.79289C0.402369 7.18342 0.402369 7.81658 0.792892 8.20711L7.15685 14.5711C7.54738 14.9616 8.18054 14.9616 8.57107 14.5711C8.96159 14.1805 8.96159 13.5474 8.57107 13.1569L2.91421 7.5L8.57107 1.84315C8.96159 1.45262 8.96159 0.819457 8.57107 0.428932C8.18054 0.0384078 7.54738 0.0384078 7.15685 0.428932L0.792892 6.79289ZM24.5 6.5L1.5 6.5V8.5L24.5 8.5V6.5Z" fill="#FFE66D"/>
             </svg>
             <svg viewBox="0 0 12 16" xmlns="http://www.w3.org/2000/svg">
-            <g id="Pause">
-            <path id="Vector" d="M0 0.922783C0 0.412484 0.381099 0 0.852324 0L4.26162 0C4.73284 0 5.11394 0.412484 5.11394 0.922783V13.8417C5.11394 14.352 4.73284 14.7645 4.26162 14.7645H0.852324C0.381099 14.7645 0 14.352 0 13.8417L0 0.922783Z" fill="#FFE66D"/>
-            <path id="Vector_2" d="M6.86658 0.922783C6.86658 0.412484 7.24768 0 7.7189 0L11.1282 0C11.5994 0 11.9805 0.412484 11.9805 0.922783V13.8417C11.9805 14.352 11.5994 14.7645 11.1282 14.7645H7.7189C7.24768 14.7645 6.86658 14.352 6.86658 13.8417V0.922783Z" fill="#FFE66D"/>
-            </g>
+                <g id="Pause">
+                <path id="Pause" d="M0 0.922783C0 0.412484 0.381099 0 0.852324 0L4.26162 0C4.73284 0 5.11394 0.412484 5.11394 0.922783V13.8417C5.11394 14.352 4.73284 14.7645 4.26162 14.7645H0.852324C0.381099 14.7645 0 14.352 0 13.8417L0 0.922783Z" fill="#FFE66D"/>
+                <path id="Pause2" d="M6.86658 0.922783C6.86658 0.412484 7.24768 0 7.7189 0L11.1282 0C11.5994 0 11.9805 0.412484 11.9805 0.922783V13.8417C11.9805 14.352 11.5994 14.7645 11.1282 14.7645H7.7189C7.24768 14.7645 6.86658 14.352 6.86658 13.8417V0.922783Z" fill="#FFE66D"/>
+                </g>
             </svg>
             </Button>
             <Button style={{width: 150, height: 40, fill: '#FF6B6B', color: 'white', border: "solid grey", borderRadius: 5}}>Empty Goal</Button>
-            <Button style={{width: 150, height: 40, fill: '#FF6B6B', color: 'white', border: "solid grey", borderRadius: 5}}>Events</Button>
+            {/* A rare situation where the goalkeeper shifts with another player. Leaving the goal empty. */}
+            <Button style={{width: 150, height: 40, fill: '#FF6B6B', color: 'white', border: "solid grey", borderRadius: 5}}>Events</Button> 
+            {/* Detailed of events during the match. Like sanctions. */}
         </ButtonGroup>
-
-        <ButtonGroup className="col p-0 justify-content-evenly align-items-center" orientation= 'vertical'> 
+        <ButtonGroup className="col p-0 justify-content-evenly align-items-center mb-3 mt-1" orientation= 'vertical'> 
             <Button className="px-5" id="arrowRight" style={{width: 150, height: 40, color: 'white', border: "solid grey", borderRadius: 5}}>
             <svg viewBox="0 0 12 16" xmlns="http://www.w3.org/2000/svg">
             <g id="Pause">
-            <path id="Vector" d="M0 0.922783C0 0.412484 0.381099 0 0.852324 0L4.26162 0C4.73284 0 5.11394 0.412484 5.11394 0.922783V13.8417C5.11394 14.352 4.73284 14.7645 4.26162 14.7645H0.852324C0.381099 14.7645 0 14.352 0 13.8417L0 0.922783Z" fill="#FFE66D"/>
-            <path id="Vector_2" d="M6.86658 0.922783C6.86658 0.412484 7.24768 0 7.7189 0L11.1282 0C11.5994 0 11.9805 0.412484 11.9805 0.922783V13.8417C11.9805 14.352 11.5994 14.7645 11.1282 14.7645H7.7189C7.24768 14.7645 6.86658 14.352 6.86658 13.8417V0.922783Z" fill="#FFE66D"/>
+            <path id="Pause" d="M0 0.922783C0 0.412484 0.381099 0 0.852324 0L4.26162 0C4.73284 0 5.11394 0.412484 5.11394 0.922783V13.8417C5.11394 14.352 4.73284 14.7645 4.26162 14.7645H0.852324C0.381099 14.7645 0 14.352 0 13.8417L0 0.922783Z" fill="#FFE66D"/>
+            <path id="Pause2" d="M6.86658 0.922783C6.86658 0.412484 7.24768 0 7.7189 0L11.1282 0C11.5994 0 11.9805 0.412484 11.9805 0.922783V13.8417C11.9805 14.352 11.5994 14.7645 11.1282 14.7645H7.7189C7.24768 14.7645 6.86658 14.352 6.86658 13.8417V0.922783Z" fill="#FFE66D"/>
             </g>
             </svg>
             <svg viewBox="-5 0 30 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path id="Arrow 16" d="M24.2071 8.20711C24.5976 7.81658 24.5976 7.18342 24.2071 6.79289L17.8431 0.428932C17.4526 0.0384079 16.8195 0.0384079 16.4289 0.428932C16.0384 0.819456 16.0384 1.45262 16.4289 1.84315L22.0858 7.5L16.4289 13.1569C16.0384 13.5474 16.0384 14.1805 16.4289 14.5711C16.8195 14.9616 17.4526 14.9616 17.8431 14.5711L24.2071 8.20711ZM0.5 8.5L23.5 8.5V6.5L0.5 6.5L0.5 8.5Z" fill="#FFE66D"/>
+            <path id="Arrow right" d="M24.2071 8.20711C24.5976 7.81658 24.5976 7.18342 24.2071 6.79289L17.8431 0.428932C17.4526 0.0384079 16.8195 0.0384079 16.4289 0.428932C16.0384 0.819456 16.0384 1.45262 16.4289 1.84315L22.0858 7.5L16.4289 13.1569C16.0384 13.5474 16.0384 14.1805 16.4289 14.5711C16.8195 14.9616 17.4526 14.9616 17.8431 14.5711L24.2071 8.20711ZM0.5 8.5L23.5 8.5V6.5L0.5 6.5L0.5 8.5Z" fill="#FFE66D"/>
             </svg>
             </Button>
             <Button style={{width: 150, height: 40, fill: '#FF6B6B', color: 'white', border: "solid grey", borderRadius: 5}}>Empty Goal</Button>
             <Button style={{width: 150, height: 40, fill: '#FF6B6B', color: 'white', border: "solid grey", borderRadius: 5}}>Events</Button>
+           
         </ButtonGroup>
     
 </div>
@@ -91,13 +94,23 @@ const actionsButtonsTimeline = (
 )
 
 const timeLine = ( 
-<div id="timeLine" className="row row-no-gutters justify-content-evenly md-4" style={{width: '106%', height: '40%', backgroundColor: '#1F6372'}}>
+<div id="timeLine" className="row justify-content-center" style={{width: '106%', height: '43%', backgroundColor: '#1F6372'}}>
     <div className= "container">
-        <div className="row">
-            <div className= "col ms-5" style={{color: 'white', fontSize: 20, fontFamily: 'Roboto'}}>Stats</div>
-            <div className= "col me-5" style={{color: 'white', fontSize: 20, fontFamily: 'Roboto'}}><u>Timeline</u></div>
-        </div>
-        <Box className="col">
+        <Box className="col"
+        sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            typography: 'body3',
+            '& > :not(style) ~ :not(style)': {
+              ml: 0,
+            },
+          }}>
+            <Link underline="hover" href="#" className= "col-5 align-items-center" style={{color: 'white', fontSize: 20, fontFamily: 'Roboto'}}>{'Stats'}</Link>
+            <Link underline="hover" href="#" className= "col-5 align-items-center" style={{color: 'white', fontSize: 20, fontFamily: 'Roboto'}}>{'Timeline'}</Link>
+        </Box>
+        <Box className="col mb-1">
+             {/* Bell indicates an activity where we need to edit as so as a */}
             <Button style= {{width: 90, height: 45}}>
             <svg viewBox="31 5 25 20" xmlns="http://www.w3.org/2000/svg">
                 <g id="Bell">
@@ -110,9 +123,105 @@ const timeLine = (
             </svg>
             </Button>
         </Box>
-    </div>
-    <div className="col" style={{background: '#1F6372'}}>
-        <TimelineItem>
+        <Box className="col row row-cols-1 mt-2 justify-content-evenly" style={{background: '#1F6372', color:'white'}}> 
+            <Grid className="col m-0 align-items-center" container spacing={1}>
+                <Grid item xs={5} md={5} borderBottom={'3px solid grey'} borderRadius={'10px'}>
+                <Item>Synthesis*</Item>
+                </Grid>
+                <Grid item xs={5} md={4}>
+                <Item>
+                </Item>
+                </Grid>
+                <Grid item xs={2} md={3}>
+                <Item>
+                </Item>
+                </Grid>
+                <Grid item xs={5} md={5} borderBottom={'3px solid grey'} borderRadius={'10px'}>
+                <Item>Goalkeeper Effeciency:
+                </Item>
+                </Grid>
+                <Grid item xs={5} md={4}>
+                <Item>
+                    45% 20/44
+                </Item>
+                </Grid>
+                <Grid item xs={2} md={3}>
+                <Item>
+                    <button className="btn justify-content-evenly"
+                        style={{width:'40px', height:'25%'}}>
+                        <svg viewBox=" 5 -5 20 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path id="Arrow right" d="M24.2071 8.20711C24.5976 7.81658 24.5976 7.18342 24.2071 6.79289L17.8431 0.428932C17.4526 0.0384079 16.8195 0.0384079 16.4289 0.428932C16.0384 0.819456 16.0384 1.45262 16.4289 1.84315L22.0858 7.5L16.4289 13.1569C16.0384 13.5474 16.0384 14.1805 16.4289 14.5711C16.8195 14.9616 17.4526 14.9616 17.8431 14.5711L24.2071 8.20711ZM0.5 8.5L23.5 8.5V6.5L0.5 6.5L0.5 8.5Z" fill="#FFE66D"/>
+                        </svg>  
+                    </button>
+                </Item>
+                </Grid>
+                <Grid item xs={5} md={5} borderBottom={'3px solid grey'} borderRadius={'10px'}>
+                <Item>Player Activity*</Item>
+                </Grid>
+                <Grid item xs={5} md={4}>
+                <Item>
+                </Item>
+                </Grid>
+                <Grid item xs={2} md={3}>
+                <Item>
+                </Item>
+                </Grid>
+                <Grid item xs={5} md={5} borderBottom={'3px solid grey'} borderRadius={'10px'}>
+                <Item>Shots efficiency</Item>
+                </Grid>
+                <Grid item xs={5} md={4}>
+                <Item>
+                    77% 23/30
+                </Item>
+                </Grid>
+                <Grid item xs={2} md={3}>
+                <Item>
+                    <button className="btn justify-content-evenly"
+                        style={{width:'40px', height:'25%'}}>
+                        <svg viewBox=" 5 -5 20 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path id="Arrow right" d="M24.2071 8.20711C24.5976 7.81658 24.5976 7.18342 24.2071 6.79289L17.8431 0.428932C17.4526 0.0384079 16.8195 0.0384079 16.4289 0.428932C16.0384 0.819456 16.0384 1.45262 16.4289 1.84315L22.0858 7.5L16.4289 13.1569C16.0384 13.5474 16.0384 14.1805 16.4289 14.5711C16.8195 14.9616 17.4526 14.9616 17.8431 14.5711L24.2071 8.20711ZM0.5 8.5L23.5 8.5V6.5L0.5 6.5L0.5 8.5Z" fill="#FFE66D"/>
+                        </svg>  
+                    </button>
+                </Item>
+                </Grid>
+                <Grid item xs={5} md={5} borderBottom={'3px solid grey'} borderRadius={'10px'}>
+                <Item>6m shots effeciency</Item>
+                </Grid>
+                <Grid item xs={5} md={4}>
+                <Item>
+                    75% 15/20
+                </Item>
+                </Grid>
+                <Grid item xs={2} md={3}>
+                <Item>
+                </Item>
+                </Grid>
+                <Grid item xs={5} md={5} borderBottom={'3px solid grey'} borderRadius={'10px'}>
+                <Item>Timeline*</Item>
+                </Grid>
+                <Grid item xs={5} md={4}>
+                <Item>
+                </Item>
+                </Grid>
+                <Grid item xs={2} md={3}>
+                <Item>
+                </Item>
+                </Grid>
+                <Grid item xs={5} md={5} borderBottom={'3px solid grey'} borderRadius={'10px'}>
+                <Item>Scorers*</Item>
+                </Grid>
+                <Grid item xs={5} md={4}>
+                <Item>
+                </Item>
+                </Grid>
+                <Grid item xs={2} md={3}>
+                <Item>
+                </Item>
+                </Grid>
+            </Grid>
+        </Box>
+    
+        {/* <TimelineItem>
             <TimelineOppositeContent color="text.secondary">
             11:45
             </TimelineOppositeContent>
@@ -151,7 +260,7 @@ const timeLine = (
             <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>Time-out</TimelineContent>
-        </TimelineItem>
+        </TimelineItem> */}
     </div>
 </div>
 )

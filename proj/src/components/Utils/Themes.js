@@ -1,5 +1,9 @@
 import { createTheme } from '@mui/material/styles';
 
+
+
+
+
 export const defaultColors = {
   primary: "#fde581ff",
   secondary: "#f55760ff",
@@ -176,3 +180,4 @@ export const themeButtonPlayer = createTheme({
     },
   },
 });
+
