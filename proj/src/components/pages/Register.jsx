@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { defaultColors } from "../Utils/constants";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Button } from "@mui/material";
-import Box from "@mui/material/Box";
+import { Button, Box, FormControl, InputLabel, Select, MenuItem, TextField } from "@mui/material";
+ 
 
 /*
 Adding validation and automatically log in a successfully registered user
@@ -17,7 +17,30 @@ Adding validation and automatically log in a successfully registered user
 
 const theme = createTheme({
   components: {
-   
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& label.MuiInputLabel-root': {
+            color: 'white',
+          },
+          '& .MuiInputBase-input': {
+            color: 'white',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'white',
+            },
+            '&:hover fieldset': {
+              borderColor: 'white',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'white',
+            },
+            backgroundColor: defaultColors.quaternary,
+          },
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -44,13 +67,13 @@ const theme = createTheme({
             backgroundColor: "#f7fff7",
             color: "blue", // Example text color for outlined variant
           },
-         
-          // Add any other styles you want to apply to all buttons
         },
       },
     },
   },
 });
+
+
 
 function Register() {
   const { t } = useTranslation();
@@ -410,130 +433,64 @@ function Register() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <div className="row middle-row" style={{backgroundColor: defaultColors.quaternary}}>
-          <div className="col d-flex justify-content-center align-items-center">
-            <div className="row-content border-0 d-flex justify-content-center align-items-center">
-              {/* Start Component content */}
-              <Box
-              
-              >
-               
-                <form onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label
-                      htmlFor="username-register"
-                      className=" mb-1 text-white"
-                    >
-                      <small>{t("username")}</small>
-                    </label>
-                    <input
-                      onChange={(e) =>
-                        dispatch({
-                          type: "usernameImmediately",
-                          value: e.target.value,
-                        })
-                      }
-                      id="username-register"
-                      name="username"
-                      className="form-control"
-                      type="text"
-                      placeholder={t("create_username")}
-                      autoComplete="off"
-                    />
-                    {/*  Giving a logic so when CSSTransition should exist or not in the DOM
-                    if username.has Errors plays the animation
-              */}
-                    <CSSTransition
-                      in={state.username.hasErrors}
-                      timeout={330}
-                      classNames="liveValidateMessage"
-                      unmountOnExit
-                    >
-                      <div className="alert alert-danger small liveValidateMessage">
-                        {state.username.message}
-                      </div>
-                    </CSSTransition>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email-register" className=" mb-1 text-white" style={{ margin: "10px 0 0 0"}}>
-                      <small>{t("email")}</small>
-                    </label>
-                    <input
-                      onChange={(e) =>
-                        dispatch({
-                          type: "emailImmediately",
-                          value: e.target.value,
-                        })
-                      }
-                      id="email-register"
-                      name="email"
-                      className="form-control"
-                      type="text"
-                      placeholder={t("email_placeholder")}
-                      autoComplete="off"
-                      
-                      
-                    />
-                    <CSSTransition
-                      in={state.email.hasErrors}
-                      timeout={330}
-                      classNames="liveValidateMessage"
-                      unmountOnExit
-                    >
-                      <div className="alert alert-danger small liveValidateMessage">
-                        {state.email.message}
-                      </div>
-                    </CSSTransition>
-                  </div>
-                  <div className="form-group">
-                    <label
-                      htmlFor="password-register"
-                      className=" mb-1 text-white"
-                      style={{ margin: "10px 0 0 0"}}
-                    >
-                      <small>{t("password")}</small>
-                    </label>
-                    <input
-                      onChange={(e) =>
-                        dispatch({
-                          type: "passwordImmediately",
-                          value: e.target.value,
-                        })
-                      }
-                      id="password-register"
-                      name="password"
-                      className="form-control"
-                      type="password"
-                      placeholder={t("create_password")}
-                    />
-                    <CSSTransition
-                      in={state.password.hasErrors}
-                      timeout={330}
-                      classNames="liveValidateMessage"
-                      unmountOnExit
-                    >
-                      <div className="alert alert-danger small liveValidateMessage">
-                        {state.password.message}
-                      </div>
-                    </CSSTransition>
-                    <Button
-                      type="submit"
-                        variant="contained"
-                        style={{ margin: "20px 0 0 0"}}
-                    >
-                      {t("signup")}
-                    </Button>
-                  </div>
-                </form>
-              </Box>
-              {/* End Component content */}
-            </div>
-          </div>
-        </div>
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+    <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: "60px",
+              backgroundColor: defaultColors.quaternary
+            }}>  
+    <img src="src/assets/images/iconeregister.png" alt="Register Logo" style={{ width: "30px", marginRight: "20px" }} />
+    <h2 style={{ color: "white" }}>Register</h2>
+    </div>
+    <Box sx={{ display: 'flex', height:'100%', justifyContent: 'center', backgroundColor: defaultColors.quaternary, p: 2 }}>
+    <Box sx={{ width: 340 }}>
+    <form onSubmit={handleSubmit}>
+                  {/* Updated TextField components to match the Team component's palette */}
+    <TextField 
+                    fullWidth 
+                    id="username-register" 
+                    label={t("username")} 
+                    variant="outlined" 
+                    margin="normal"
+                    InputLabelProps={{ style: { color: 'white' } }}
+                    InputProps={{
+                      style: { color: 'white', borderColor: 'white' },
+                    }}
+                  />
+    <TextField 
+                    fullWidth 
+                    id="email-register" 
+                    label={t("email")} 
+                    variant="outlined" 
+                    margin="normal"
+                    InputLabelProps={{ style: { color: 'white' } }}
+                    InputProps={{
+                      style: { color: 'white', borderColor: 'white' },
+                    }}
+                  />
+    <TextField 
+                    fullWidth 
+                    id="password-register" 
+                    label={t("password")} 
+                    type="password"
+                    variant="outlined" 
+                    margin="normal"
+                    InputLabelProps={{ style: { color: 'white' } }}
+                    InputProps={{
+                      style: { color: 'white', borderColor: 'white' },
+                    }}
+                  />
+    <Button type="submit" variant="contained" sx={{ mt: 2, width: '100%' }}>
+                    {t("signup")}
+    </Button>
+    </form>
+    </Box>
+    </Box>
+    </ThemeProvider>
     </>
-  );
-}
-
-export default Register;
+      );
+    }
+     
+    export default Register;
