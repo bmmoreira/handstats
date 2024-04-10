@@ -14,6 +14,8 @@ import PlayersOnBenchMobile from "./PlayersOnBenchMobile";
 import TimeCounter from "./TimeCounter";
 import FieldView from "./FieldView";
 import { defaultColors } from "../Utils/Themes";
+import { createEntry } from "../Utils/Utils";
+import { BASE_URL, COLLECTION_NAME_GAMEACTIONS, TOKEN } from "../Utils/constants";
 
 const drawerBleeding = 56;
 
@@ -126,6 +128,38 @@ const handleFieldClick = (event) => {
       // If a rectangle was clicked
       const polygonId = target.id; // Get the ID of the rectangle
       message = `Miss polygon area clicked! ID: ${polygonId}`;
+      appDispatch({
+        type: "gameActions",
+        value: {
+          time: localStorage.getItem("timer"),
+          action: "Finish",
+          actionName: "Outside",
+          player: appState.playerActive,
+          team: "Home",
+          shotFrom: appState.shotFrom,
+          shotEnd: "Outside",
+          shotResult: "Miss",
+        },
+      });
+
+      const entry = {
+        data: {
+          time: localStorage.getItem("timer"),
+          action: "Finish",
+          actionName: "Outside",
+          game: 1,
+          player: Number(appState.playerActive),
+          team: 1,
+          SHOTFROM: "NONE",
+          shotFrom: appState.shotFrom,
+          shotEnd: "OUTSIDE",
+          shotResult: "MISS",
+        },
+      };
+
+      createEntry(entry,TOKEN,BASE_URL,COLLECTION_NAME_GAMEACTIONS);
+
+
     }
     console.log(message);
     appDispatch({

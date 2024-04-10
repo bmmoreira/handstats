@@ -46,8 +46,7 @@ export default function GameTimeline() {
         return <SimCardAlertIcon sx={{ color: 'red',  }} />;
       case "Finish":
         return <SportsSoccerIcon sx={{ color: 'red',  }} />;
-      case "Finish":
-        return <SportsSoccerIcon sx={{ color: 'red',  }} />;
+     
     }
   };
 
