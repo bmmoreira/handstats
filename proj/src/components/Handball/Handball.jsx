@@ -20,7 +20,8 @@ function Handball(props) {
             <div className="row-content">
               <div className="container gx-0 container-fluid h-100" id="mainContainerView" >
                 <div className="row gx-0 container-fluid h-100 bg-info" >
-                { (width < 768) ? <ViewMobileHandball/> : <ViewDesktop/> }
+                { /* (width < 768) ? <ViewMobileHandball/> : <ViewDesktop/> */}
+                 <ViewMobileHandball/> 
                 </div>
               </div>
             </div>

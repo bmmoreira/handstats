@@ -17,7 +17,7 @@ function HomeGuest() {
 
   return (
     <>
-      <div className="row middle-row">
+      <div className="row middle-row g-0">
         <div className="col">
           <div className="row-content">
             <div>

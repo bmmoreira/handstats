@@ -23,8 +23,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import { roundedButton, defaultColors } from "../Utils/constants.js";
-import appLogo from "../../assets/images/logo_extended2.png";
-
+import appLogo from "../../assets/images/logo_extended3.png";
 
 function Header() {
   const appDispatch = useContext(DispatchContext);
@@ -41,45 +40,30 @@ function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: defaultColors.secondary,
-                                color: "white",
-                               
-                                }}>
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: defaultColors.secondary, color: "white", padding: "0px"}}
+      >
         <Toolbar>
           <IconButton
             onClick={() => {
               console.log("Menu Clicked!");
               appDispatch({
-                type: 'toggleDrawer',
-                value: !appState.drawer
+                type: "toggleDrawer",
+                value: !appState.drawer,
               });
             }}
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ mr: 0 }}
           >
             <MenuIcon />
           </IconButton>
-         <img src={appLogo} alt="Handball is Fun"/>
+          <img src={appLogo} alt="Handball is Fun" />
+
          
-          {(location.pathname === "/") |
-          (location.pathname === "/handball") |
-          (location.pathname === "/register") |
-          (location.pathname === "/about") ? (
-            ""
-          ) : (
-            <>
-              <IconButton
-                aria-label="help"
-                sx={{ ...roundedButton, marginLeft: "5px" }}
-                onClick={showHelpDialog}
-              >
-                <HelpIcon />
-              </IconButton>
-            </>
-          )}
         </Toolbar>
       </AppBar>
     </Box>

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
-import appLogo from "../../assets/images/logotipo_cesae_digital.png";
+import appLogo from "../../assets/images/cesae.png";
 import { useTranslation } from "react-i18next";
 
 function About() {

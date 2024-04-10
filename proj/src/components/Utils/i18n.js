@@ -90,6 +90,7 @@ const resources = {
       visit_homepage: "You can visit the this link to sign up: ",
       homepage: "HomePage",
       register: "Register",
+      select_player: "Select player first!",
     },
   },
   pt: {
@@ -171,6 +172,7 @@ const resources = {
       visit_homepage: "Você pode visitar este link para registrar-se: ",
       homepage: "Página inicial",
       register: "Registrar-se",
+      select_player: "Selecione o jogador primeiro!",
     },
   },
   fr: {
@@ -255,6 +257,7 @@ const resources = {
       visit_homepage: "You can visit the this link to sign up: ",
       homepage: "HomePage",
       register: "Registre",
+      select_player: "Sélectionnez d'abord le joueur !",
     },
   },
   es: {
@@ -338,6 +341,7 @@ const resources = {
       visit_homepage: "You can visit the this link to sign up: ",
       homepage: "HomePage",
       register: "Registro",
+      select_player: "¡Selecciona al jugador primero!",
     },
   },
 };

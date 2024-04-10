@@ -1,15 +1,12 @@
 import React, { useContext } from "react";
 import StateContext from "../../StateContext";
-import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import {
-  themeButtonPlayers,
-  boxFieldMobile,
+  buttonFieldFirstRow,
   buttonFieldSecondRow,
 } from "../Utils/Themes";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 
 function PlayersOnFieldMpbile(props) {
   const appState = useContext(StateContext);
@@ -22,12 +19,13 @@ function PlayersOnFieldMpbile(props) {
     .filter((player) => player.state.includes("F"))
     .map((player, index) => (
       <Button
+      key={index}
         variant={
           appState.playersSelected.includes(player.number)
             ? "selected"
-            : player.pos == "GR"
+            : (player.pos == "GR")
             ? "gk"
-            : "dark"
+            : ""
         }
         size="large"
         onClick={() => {
@@ -43,7 +41,7 @@ function PlayersOnFieldMpbile(props) {
 
   return (
     <>
-      <ThemeProvider theme={themeButtonPlayers}>
+      <ThemeProvider theme={buttonFieldFirstRow}>
         <div className="flex-item">
           <div className="container">
             <div className="row justify-content-center align-items-center">

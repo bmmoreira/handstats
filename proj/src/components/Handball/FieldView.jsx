@@ -4,24 +4,15 @@ import StateContext from "../../StateContext";
 import "./fieldview.css";
 import ActionsView from "./ActionsView";
 import Box from "@mui/material/Box";
+import { fieldBox } from "../Utils/Themes";
 
 function FieldView(props) {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
- 
-
   return (
     <>
-      <Box
-        sx={{
-          backgroundColor: appState.colors.primaryColor,
-          border: "2px solid grey",
-          borderRadius: "20px",
-          padding: "10px",
-          margin: "10px 0 10px 0",
-        }}
-      >
+      <Box sx={{ ...fieldBox }}>
         <div
           className="flex-item"
           style={{

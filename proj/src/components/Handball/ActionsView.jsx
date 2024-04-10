@@ -1,69 +1,50 @@
 import React, { useContext } from "react";
 import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
+import { useTranslation } from "react-i18next";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import SportsKabaddiIcon from "@mui/icons-material/SportsKabaddi";
 import SimCardAlertIcon from "@mui/icons-material/SimCardAlert";
 import SportsHandballIcon from "@mui/icons-material/SportsHandball";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import { createEntry } from "../Utils/Utils";
+import { BASE_URL, COLLECTION_NAME_GAMEACTIONS, TOKEN } from "../Utils/constants";
+import { themesActions } from "../Utils/Themes";
 
-const AttackButtons = [
-  { id: 1, name: "Travelling", icon: <SportsHandballIcon /> },
-  { id: 2, name: "Double dribble", icon: <SportsHandballIcon /> },
-  { id: 3, name: "Forcing", icon: <SportsHandballIcon /> },
-  { id: 4, name: "Lost ball", icon: <SportsHandballIcon /> },
-  { id: 5, name: "Countered Shot", icon: <SportsHandballIcon /> },
-  { id: 6, name: "2 min provoked", icon: <SportsHandballIcon /> },
-  { id: 7, name: "7m provoked", icon: <SportsHandballIcon /> },
-  { id: 8, name: "One-on-one won", icon: <SportsHandballIcon /> },
-];
-
-const DefenseButtons = [
-  { id: 1, name: "7m conceded", icon: <SportsKabaddiIcon /> },
-  { id: 2, name: "One-on-one lost", icon: <SportsKabaddiIcon /> },
-  { id: 3, name: "Free throw", icon: <SportsKabaddiIcon /> },
-  { id: 4, name: "Countered Shot", icon: <SportsKabaddiIcon /> },
-  { id: 5, name: "Offensive foul", icon: <SportsKabaddiIcon /> },
-  { id: 6, name: "Stealing", icon: <SportsKabaddiIcon /> },
-];
-
-const SanctionButtons = [
-  { id: 1, name: "Red card", icon: <SimCardAlertIcon /> },
-  { id: 2, name: "Yellow card", icon: <SimCardAlertIcon /> },
-  { id: 3, name: "2 minutes", icon: <SimCardAlertIcon /> },
-];
 
 function ActionsView(props) {
+  const { t } = useTranslation();
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
 
-  const theme = createTheme({
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            backgroundColor: appState.colors.quaternaryColor, // Change background color of the button
+  const AttackButtons = [
+    { id: 1, name: "Travelling", icon: <SportsHandballIcon /> },
+    { id: 2, name: "Double dribble", icon: <SportsHandballIcon /> },
+    { id: 3, name: "Forcing", icon: <SportsHandballIcon /> },
+    { id: 4, name: "Lost ball", icon: <SportsHandballIcon /> },
+    { id: 5, name: "Countered Shot", icon: <SportsHandballIcon /> },
+    { id: 6, name: "2 min provoked", icon: <SportsHandballIcon /> },
+    { id: 7, name: "7m provoked", icon: <SportsHandballIcon /> },
+    { id: 8, name: "One-on-one won", icon: <SportsHandballIcon /> },
+  ];
+  
+  const DefenseButtons = [
+    { id: 1, name: "7m conceded", icon: <SportsKabaddiIcon /> },
+    { id: 2, name: "One-on-one lost", icon: <SportsKabaddiIcon /> },
+    { id: 3, name: "Free throw", icon: <SportsKabaddiIcon /> },
+    { id: 4, name: "Countered Shot", icon: <SportsKabaddiIcon /> },
+    { id: 5, name: "Offensive foul", icon: <SportsKabaddiIcon /> },
+    { id: 6, name: "Stealing", icon: <SportsKabaddiIcon /> },
+  ];
+  
+  const SanctionButtons = [
+    { id: 1, name: "Red card", icon: <SimCardAlertIcon /> },
+    { id: 2, name: "Yellow card", icon: <SimCardAlertIcon /> },
+    { id: 3, name: "2 minutes", icon: <SimCardAlertIcon /> },
+  ];
 
-            "&:hover": {
-              backgroundColor: "#ffe66d",
-              color: "#ff0000", // Change text color on hover
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", // Add a box shadow on hover
-              // Add any other styles you want to change on hover
-            },
-            borderRadius: "18px", // Change border radius of the button
-            padding: "12px 24px", // Change padding of the button
-            fontWeight: "bold", // Change font weight of the button text
-            fontSize: "14px", // Change font size of the button text
-            textTransform: "uppercase", // Change text transformation of the button text
-            // Add any other styles you want to apply to all buttons
-          },
-        },
-      },
-    },
-  });
-
-  /**
+   /**
    * Returns the appropriate button component based on the type.
    *
    * @param {string} type - The type of the button. Can be "attack", "defense", or "sanction".
@@ -81,12 +62,11 @@ function ActionsView(props) {
   };
 
   const onClickActionButton = (button) => {
-       
     if (appState.playerActive === 0) {
       appDispatch({
         type: "flashMessages",
-        value: "Please Select a Player First!",
-      }); 
+        value: t("select_player"),
+      });
       appDispatch({
         type: "turnOffActionsView",
       });
@@ -104,17 +84,33 @@ function ActionsView(props) {
           shotResult: null,
         },
       });
+
+      const entry = {
+        data: {
+          time: localStorage.getItem("timer"),
+          action: props.type,
+          actionName: button.name,
+          game: 1,
+          player: Number(appState.playerActive),
+          team: 1,
+          SHOTFROM: "NONE",
+          SHOTEND: "NONE",
+          SHOTRESULT: "NONE",
+        },
+      };
+
+      createEntry(entry,TOKEN,BASE_URL,COLLECTION_NAME_GAMEACTIONS);
     }
   };
 
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themesActions}>
         <div
           className="flex-container"
           style={{
             position: "absolute",
-            zIndex: "3",
+            zIndex: "99",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",

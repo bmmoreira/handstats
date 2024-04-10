@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useImmerReducer } from "use-immer";
 import StateContext from "./StateContext";
 import DispatchContext from "./DispatchContext";
@@ -12,17 +12,20 @@ import Footer from "./components/pages/Footer";
 import Register from "./components/pages/Register";
 import FlashMessages from "./components/pages/FlashMessages";
 import AppDrawer from "./components/Drawer/AppDrawer";
-import Timeline from "./components/Handball/Timeline";
+import Timeline from "./components/Handball/Timeline2";
+import Timeline2 from "./components/Handball/Timeline2";
 import Statistics from "./components/Handball/Statistics";
 import { playersList } from "./components/Utils/constants";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import ShootingAction from "./components/Handball/ShootingAction";
-import BottomDrawer from "./components/Handball/BottomDrawer";
+import Axios from "axios";
 
+import BottomDrawer from "./components/Handball/BottomDrawer";
 
 function App() {
   const [count, setCount] = useState(0);
+  const SET_PLAYER_LIST = "SET_PLAYER_LIST";
 
   const initialState = {
     loggedIn: Boolean(localStorage.getItem("aStatsToken")),
@@ -34,16 +37,18 @@ function App() {
       email: localStorage.getItem("aStatsEmail"),
     },
     playerList: playersList,
+    playerListDB: null,
     playersSelected: [],
     playerActive: 0,
+    playerActiveBenched: 0,
     playersOnBench: [1, 2, 3, 4, 5, 6, 7, 8, 9],
     playersOnField: [],
     shotFrom: "",
     shotEnd: "",
     shotResult: "",
     gameTime: 0,
-    gameScoreboardHome: 0,
-    gameScoreboardAway: 0,
+    scoreMyTeam: 0,
+    scoreOpponentTeam: 0,
     field_bg_color: "#1a535c",
     colors: {
       primaryColor: "#f7fff7",
@@ -84,6 +89,9 @@ function App() {
       case "updatePlayerActive":
         draft.playerActive = action.value;
         break;
+      case "updatePlayerActiveBenched":
+        draft.playerActiveBenched = action.value;
+        break;
       case "playersOnBench":
         draft.playersOnBench = action.value;
         break;
@@ -92,6 +100,9 @@ function App() {
         break;
       case "updateScoreboardHome":
         draft.gameScoreboardHome = action.value;
+        break;
+      case "updateGameTime":
+        draft.gameTime = action.value;
         break;
       case "updateScoreboardAway":
         draft.gameScoreboardAway = action.value;
@@ -136,6 +147,12 @@ function App() {
       case "setShootingResult":
         draft.shotEnd = action.value;
         break;
+      case "scoreMyTeam":
+        draft.scoreMyTeam = action.value;
+        break;
+      case "scoreOpponentTeam":
+        draft.scoreOpponentTeam = action.value;
+        break;
       case "resetShootingAction":
         draft.shotEnd = "";
         draft.shotFrom = "";
@@ -149,6 +166,9 @@ function App() {
       case "toggleDrawerBottom":
         draft.drawerBottom = action.value;
         break;
+      case SET_PLAYER_LIST:
+        draft.playerListDB = action.payload;
+        break;
     }
   }
   /*
@@ -156,6 +176,35 @@ function App() {
     And then Immer will automatically handle the task of giving that draft object back to React.
    */
   const [state, dispatch] = useImmerReducer(mapReducer, initialState);
+
+  useEffect(() => {
+    const getPlayerList = async () => {
+      const res = await Axios("http://api.handballisfun.org/api/players");
+      console.log(res.data.data);
+      dispatch({ type: SET_PLAYER_LIST, payload: res.data.data });
+    };
+
+    getPlayerList();
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (state.playerListDB) {
+      console.log(state.playerListDB);
+      const playerList = state.playerListDB.map((player) => {
+        return {
+          name: player.attributes.name,
+          nickname: player.attributes.nickname,
+          number: player.attributes.number,
+          id: player.attributes.id,
+          active: player.attributes.active,
+          state: player.attributes.state,
+          selected: player.attributes.selected,
+          pos: player.attributes.pos,
+        };
+      });
+      dispatch({ type: "updatePlayerList", value: playerList });
+    }
+  }, [state.playerListDB]);
 
   return (
     <StateContext.Provider value={state}>
@@ -167,6 +216,7 @@ function App() {
               <div className="col">
                 <div className="row-content">
                   <Header />
+
                   <FlashMessages messages={state.flashMessages} />
                 </div>
               </div>
@@ -183,6 +233,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/about" element={<About />} />
               <Route path="/game-timeline" element={<Timeline />} />
+              <Route path="/game-timeline2" element={<Timeline2 />} />
               <Route path="/game-statistics" element={<Statistics />} />
             </Routes>
             <div className="row footer-row g-0">
@@ -195,7 +246,6 @@ function App() {
           </div>
           <AppDrawer />
           <ShootingAction />
-         
         </BrowserRouter>
       </DispatchContext.Provider>
     </StateContext.Provider>

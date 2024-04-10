@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
 import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import IconButton from "@mui/material/IconButton";
-import Button from "@mui/material/Button";
+import SportsIcon from '@mui/icons-material/Sports';
 import SportsKabaddiIcon from "@mui/icons-material/SportsKabaddi";
+import LoopIcon from '@mui/icons-material/Loop';
 import SimCardAlertIcon from "@mui/icons-material/SimCardAlert";
 import SportsHandballIcon from "@mui/icons-material/SportsHandball";
-import EventSeatIcon from "@mui/icons-material/EventSeat";
 import { ThemeProvider } from "@mui/material/styles";
 import { actionButtons } from "../Utils/Themes";
 
@@ -50,7 +49,7 @@ function ActionsButtons(props) {
                   console.log("clicked drawer 2");
                 }}
               >
-                <EventSeatIcon style={{ fontSize: 50 }} />
+                <LoopIcon style={{ fontSize: 50 }} />
               </IconButton>
 
               <IconButton
@@ -58,7 +57,7 @@ function ActionsButtons(props) {
                   onClickTypeActionButton("isVisibleSanctionButtons");
                 }}
               >
-                <SimCardAlertIcon style={{ fontSize: 50 }} />
+                <SportsIcon style={{ fontSize: 50 }} />
               </IconButton>
 
               <IconButton

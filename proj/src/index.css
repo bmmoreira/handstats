@@ -13,6 +13,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --colorPrimary: #fde581ff;
+  --colorSecondary: #f55760ff;
+  --colorTerceary: #fde581ff;
+  --colorQuarternary: #1a535c;
 }
 
 
@@ -103,7 +107,7 @@ body {
   border-radius: 12px;
   background-color: #4ECDC4;
   margin: auto;
-  width: 430px;
+  width: 340px;
   padding: 10px;
 }
 
@@ -112,7 +116,7 @@ body {
   display: flex;
   border-radius: 12px;
   margin: auto;
-  width: 400px;
+  width: 340px;
   padding: 10px;
   justify-content: space-between;
 }

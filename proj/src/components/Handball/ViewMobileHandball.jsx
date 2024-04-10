@@ -5,15 +5,15 @@ import { Global } from "@emotion/react";
 import { styled } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { grey } from "@mui/material/colors";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import ActionsButtonsMobile from "./ActionsButtonsMobile";
-import PlayersOnFieldMpbile from "./PlayersOnFieldMobile";
-import PlayersOnBench from "./PlayersOnBench";
+import PlayersOnFieldMobile from "./PlayersOnFieldMobile";
+import PlayersOnBenchMobile from "./PlayersOnBenchMobile";
 import TimeCounter from "./TimeCounter";
 import FieldView from "./FieldView";
+import { defaultColors } from "../Utils/Themes";
 
 const drawerBleeding = 56;
 
@@ -80,17 +80,78 @@ export default function SwipeableEdgeDrawer(props) {
     appDispatch({ type: "updatePlayerSelected", value: [] });
   }
 
-  function moveToBench() {
-    console.log("move to bench: " + appState.playerActive);
-    const playerNumber = appState.playerActive;
+/**
+   * Handles click events on the field view.
+   *
+   * @param {Event} event - The click event.
+   * @returns {void}
+   */
+const handleFieldClick = (event) => {
+  if (appState.playerActive === 0) {
+    appDispatch({
+      type: "flashMessages",
+      value: "Please Select a Player First!",
+    });
+   return
+  } else {
+    // Get the target element that was clicked
+    const target = event.target;
+    let message = `Area out of play clicked! ID: ${target.id}`;
+
+    // You can now inspect the target element to determine which specific item was clicked
+    if (target.tagName === "path") {
+      // If a path (representing an attack area) was clicked
+      const areaId = target.id;
+      message = `Attack area clicked! ID: ${areaId}`;
+      appDispatch({ 
+        type: "setShootingFrom", 
+        value: areaId,
+      });
+
+    } else if (target.tagName === "rect") {
+      const rectId = target.id; // Get the ID of the rectangle
+      // If goal rectangle was clicked
+      if(appState.shotFrom == ""){
+        message = `No Area Shoting from defined!`;
+      } else {
+        message = `Goal rectangle clicked! ID: ${rectId}`;
+        appDispatch({ 
+          type: "setShootingEnd", 
+          value: rectId,
+          dialogValue: true,
+        });
+      }
+     
+    } else if (target.tagName === "polygon") {
+      // If a rectangle was clicked
+      const polygonId = target.id; // Get the ID of the rectangle
+      message = `Miss polygon area clicked! ID: ${polygonId}`;
+    }
+    console.log(message);
+    appDispatch({
+      type: "flashMessages",
+      value: message,
+    });
+  }
+};
+
+  function swapPlayers(playerBenched) {
+    console.log("benched: " + playerBenched);
+    console.log("field: " + appState.playerActive);
+    const playerFieldNumber = appState.playerActive;
+    const playerBenchNumber = playerBenched;
     if (appState.playerActive != 0) {
       // Create a new player list where the state of the selected player is altered
       const newPlayerList = appState.playerList.map((player) => {
-        console.log(playerNumber + " - " + player.number);
-        if (player.number == playerNumber) {
+        console.log(playerFieldNumber + " - " + player.number);
+        if (player.number == playerFieldNumber) {
           // Alter the state of the selected player
-          console.log("PlayerSelection - move to bench: " + playerNumber);
+          console.log("PlayerSelection - move to bench: " + playerFieldNumber);
           return { ...player, state: "B" };
+        } else if (player.number == playerBenchNumber) {
+          // Alter the state of the selected player
+          console.log("PlayerSelection - move to field: " + playerBenchNumber);
+          return { ...player, state: "F" };
         } else {
           return player;
         }
@@ -121,6 +182,24 @@ export default function SwipeableEdgeDrawer(props) {
     }
   }
 
+  function togglePlayerSelectionBenched(playerNumber) {
+    // If the player is not already in selected player list, add them to the selected players
+    if (!appState.playersSelected.includes(playerNumber)) {
+      console.log("including player to playersSelected array: " + playerNumber);
+      const newPlayerSelected = [...appState.playersSelected, playerNumber];
+      appDispatch({ type: "updatePlayerSelected", value: newPlayerSelected });
+      swapPlayers(playerNumber);
+    } else {
+      // If the player is already selected, remove them from the selected players
+      console.log("removing player to playersSelected array: " + playerNumber);
+      const newPlayerSelected = appState.playersSelected.filter(
+        (value) => value !== playerNumber
+      );
+      appDispatch({ type: "updatePlayerSelected", value: newPlayerSelected });
+      appDispatch({ type: "updatePlayerActiveBenched", value: 0 });
+    }
+  }
+
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
@@ -134,7 +213,7 @@ export default function SwipeableEdgeDrawer(props) {
     );
 
     // Log the player data or handle it as needed
-    return player ? (player.pos + ' ' + player.name) : "No player found";
+    return player ? (player.pos + ' ' + player.name) : "No field player selected";
   }
 
   // This is used only for the example
@@ -156,25 +235,25 @@ export default function SwipeableEdgeDrawer(props) {
         sx={{
           textAlign: "center",
           pt: 1,
-          backgroundColor: "red",
+          backgroundColor: defaultColors.quaternary,
           display: "flex",
           flexGrow: "1",
           alignItems: "start",
         }}
       >
         <div className="col">
-          <div className="row gx-0" style={{ backgroundColor: "brown" }}>
+          <div className="row gx-0 d-flex justify-content-center align-items-center" >
             <TimeCounter />
           </div>
           <div className="row gx-0" style={{ backgroundColor: "#1a535c" }}>
-            <FieldView />
+          <FieldView fieldClick={handleFieldClick} />
           </div>
           <div className="row gx-0" style={{ backgroundColor: "#1a535c" }}>
             <ActionsButtonsMobile toggleDrawer={toggleDrawer(true)} />
           </div>
 
           <div className="row gx-0" style={{ backgroundColor: "#1a535c" }}>
-            <PlayersOnFieldMpbile togglePlayer={togglePlayerSelection} />
+            <PlayersOnFieldMobile togglePlayer={togglePlayerSelection} />
           </div>
           {/* <div className="row gx-0" style={{backgroundColor: 'blue', }}><PlayersOnBenchMobile/></div> */}
         </div>
@@ -200,14 +279,15 @@ export default function SwipeableEdgeDrawer(props) {
             visibility: "visible",
             right: 0,
             left: 0,
+            backgroundColor: '#4cbd96',
           }}
         >
-          <Puller />
-          <Typography sx={{ p: 2, color: "text.secondary" }}>
+          <Puller sx={{backgroundColor: defaultColors.quaternary,}}/>
+          <Typography sx={{ p: 2, color: "text.secondary", textAlign: 'center' }}>
             {" "}
             {appState.playerActive != 0
               ? `${appState.playerActive} - `
-              : "No Player Selected"}
+              : ""}
                {getPlayerData(appState.playerActive)}
           </Typography>
         </StyledBox>
@@ -217,9 +297,10 @@ export default function SwipeableEdgeDrawer(props) {
             pb: 2,
             height: "100%",
             overflow: "auto",
+            backgroundColor: '#4cbd96',
           }}
         >
-          <PlayersOnBench togglePlayer={togglePlayerSelection} />
+          <PlayersOnBenchMobile togglePlayer={togglePlayerSelectionBenched} />
         </StyledBox>
       </SwipeableDrawer>
     </Root>

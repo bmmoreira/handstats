@@ -20,6 +20,7 @@ import BookIcon from "@mui/icons-material/Book";
 import HistoryIcon from "@mui/icons-material/History";
 import DownloadIcon from "@mui/icons-material/Download";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import HomeIcon from "@mui/icons-material/Home";
 import MapIcon from "@mui/icons-material/Map";
@@ -96,6 +97,16 @@ export default function TemporaryDrawer() {
       text: t("Handball Game"),
       icon: <MapIcon />,
       onClick: () => navigate("/handball"),
+      disabled: false,
+      route: "all",
+    },
+    {
+      text: t("Reset Timer"),
+      icon: <AccessTimeIcon />,
+      onClick: () => {
+        setTime(0);
+        localStorage.setItem("timer", "0");
+      },
       disabled: false,
       route: "all",
     },
@@ -271,10 +282,13 @@ export default function TemporaryDrawer() {
         anchor={"left"}
         open={appState.drawer}
         onClose={toggleDrawer("left", false)}
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        
         PaperProps={{
           sx: {
             backgroundColor: defaultColors.terciary,
             color: "red",
+            
           },
         }}
       >
