@@ -3,32 +3,18 @@ import DispatchContext from "../../DispatchContext";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { defaultColors } from "../Utils/constants";
-import Box from "@mui/material/Box";
-import TimeCounter from "./TimeCounter";
 import Button from "@mui/material/Button";
 import { ButtonGroup } from "@mui/material";
 import "./handball.css";
-import GameTimeline from "./GameTimeLine";
-import { ThemeProvider } from "@mui/material/styles";
-import { themeRegisterPage } from "../Utils/Themes";
 
-/*
-Adding validation and automatically log in a successfully registered user
-*/
-
-function TimeLine() {
+export default function ExtraActions() {
   const { t } = useTranslation();
   const appDispatch = useContext(DispatchContext);
   const navigate = useNavigate();
 
-  const countDownTable = (
-    <div className="row g-0">
-      <TimeCounter />
-    </div>
-  );
-
-  const actionsButtonsTimeline = (
-    <div
+   return (
+    <>
+        <div
       className="row g-0"
       style={{ width: "106%", height: "30%", backgroundColor: "#1F6372" }}
     >
@@ -162,68 +148,6 @@ function TimeLine() {
         </Button>
       </ButtonGroup>
     </div>
-  );
-
-  const timeLine = (
-    <div
-      id="timeLine"
-      className="row g-0 justify-content-evenly md-4"
-      style={{ width: "100%", height: "40%" }}
-    >
-      <div className="container">
-        <Box className="col">
-          <Button style={{ width: 90, height: 45 }}>
-            <svg viewBox="31 5 25 20" xmlns="http://www.w3.org/2000/svg">
-              <g id="Bell">
-                <g id="Group">
-                  <path
-                    id="Vector"
-                    d="M44.7226 5.63938C44.7226 4.73301 44.1237 4 43.3855 4C42.6472 4 42.0494 4.73301 42.0494 5.63938C42.0494 5.74137 42.059 5.84335 42.073 5.94151C39.2165 7.26602 37.0715 10.0425 37.0715 16.7071H49.9287C49.9297 10.0412 47.5544 7.26729 44.6969 5.94151C44.713 5.84335 44.7226 5.74137 44.7226 5.63938Z"
-                    fill="#FFE66D"
-                  />
-                  <path
-                    id="Vector_2"
-                    d="M51 20.5315H36L36.9707 17.9819H49.7271L51 20.5315Z"
-                    fill="#FFE66D"
-                  />
-                  <path
-                    id="Vector_3"
-                    d="M43.4582 24.3559C44.6197 24.3559 45.5593 23.2379 45.5593 21.8611H41.3572C41.3572 23.2379 42.2979 24.3559 43.4582 24.3559Z"
-                    fill="#FFE66D"
-                  />
-                </g>
-              </g>
-            </svg>
-          </Button>
-        </Box>
-      </div>
-      <div className="col" style={{ background: "#1F6372", marginTop: '10px' }}>
-        <GameTimeline />
-      </div>
-    </div>
-  );
-
-  return (
-    <>
-      <ThemeProvider theme={themeRegisterPage}>
-        <div
-          className="row middle-row g-0"
-          style={{ backgroundColor: defaultColors.quaternary }}
-        >
-          <div className="col">
-            <div className="row gx-0" style={{ backgroundColor: "#1a535c" }}>
-              {actionsButtonsTimeline}
-            </div>
-            <div className="row gx-0" style={{ backgroundColor: "#1a535c"}}>
-              {timeLine}
-            </div>
-
-            {/* <div className="row gx-0" style={{backgroundColor: 'blue', }}><PlayersOnBenchMobile/></div> */}
-          </div>
-        </div>
-      </ThemeProvider>
     </>
   );
 }
-
-export default TimeLine;

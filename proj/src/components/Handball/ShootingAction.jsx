@@ -14,7 +14,11 @@ import appLogo from "../../assets/images/logo_action.png";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import BlockIcon from "@mui/icons-material/Block";
 import { createEntry } from "../Utils/Utils";
-import { BASE_URL, COLLECTION_NAME_GAMEACTIONS, TOKEN } from "../Utils/constants";
+import {
+  BASE_URL,
+  COLLECTION_NAME_GAMEACTIONS,
+  TOKEN,
+} from "../Utils/constants";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -43,8 +47,56 @@ export default function ShootingAction() {
   const handleClose = () => {
     appDispatch({ type: "shootingActionDialogOpen", value: false });
   };
-  const handleGoal = () => {
 
+  const ShootingZones = (area) => {
+    switch (area) {
+      case "_6m_1":
+        return "SIX1";
+      case "_6m_2":
+        return "SIX2";
+      case "_6m_3":
+        return "SIX3";
+      case "_6m_4":
+        return "SIX4";
+      case "_6m_5":
+        return "SIX5";
+      case "_9m_3":
+        return "NINE3";
+      case "_9m_2":
+        return "NINE2";
+      case "_9m_1":
+        return "NINE1";
+      default:
+        break;
+    }
+  };
+
+  const ShootingEnd = (area) => {
+    switch (area) {
+      case "baliza1":
+        return "BAL1";
+      case "baliza2":
+        return "BAL2";
+      case "baliza3":
+        return "BAL3";
+      case "baliza4":
+        return "BAL4";
+      case "baliza5":
+        return "BAL5";
+      case "baliza6":
+        return "BAL6";
+      case "baliza7":
+        return "BAL7";
+      case "baliza8":
+        return "BAL8";
+      case "baliza9":
+        return "BAL9";
+      default:
+        break;
+    }
+  };
+
+  const handleGoal = () => {
     const entry = {
       data: {
         time: localStorage.getItem("timer"),
@@ -53,13 +105,13 @@ export default function ShootingAction() {
         game: 1,
         player: Number(appState.playerActive),
         team: 1,
-        SHOTFROM: "SIX1",
-        SHOTEND: "BAL1",
+        SHOTFROM: ShootingZones(appState.shotFrom),
+        SHOTEND: ShootingEnd(appState.shotEnd),
         SHOTRESULT: "GOAL",
       },
     };
 
-    createEntry(entry,TOKEN,BASE_URL,COLLECTION_NAME_GAMEACTIONS);
+    createEntry(entry, TOKEN, BASE_URL, COLLECTION_NAME_GAMEACTIONS);
 
     appDispatch({ type: "shootingActionDialogOpen", value: false });
     appDispatch({
@@ -79,7 +131,6 @@ export default function ShootingAction() {
     appDispatch({ type: "scoreMyTeam", value: appState.scoreMyTeam + 1 });
   };
   const handleBlocked = () => {
-
     const entry = {
       data: {
         time: localStorage.getItem("timer"),
@@ -88,13 +139,13 @@ export default function ShootingAction() {
         game: 1,
         player: Number(appState.playerActive),
         team: 1,
-        SHOTFROM: "SIX2",
-        SHOTEND: "BAL2",
+        SHOTFROM: ShootingZones(appState.shotFrom),
+        SHOTEND: ShootingEnd(appState.shotEnd),
         SHOTRESULT: "BLOCKED",
       },
     };
 
-    createEntry(entry,TOKEN,BASE_URL,COLLECTION_NAME_GAMEACTIONS);
+    createEntry(entry, TOKEN, BASE_URL, COLLECTION_NAME_GAMEACTIONS);
 
     appDispatch({ type: "shootingActionDialogOpen", value: false });
     appDispatch({
@@ -134,7 +185,7 @@ export default function ShootingAction() {
           "&:hover": {
             backgroundColor: defaultColors.primary,
             color: defaultColors.quaternary,
-            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", 
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
           },
         }}
       >
@@ -148,7 +199,7 @@ export default function ShootingAction() {
           aria-label="add to favorites"
           autoFocus
           onClick={handleGoal}
-          sx={{ 
+          sx={{
             color: "white",
             backgroundColor: defaultColors.secondary,
             height: "90%",
@@ -156,7 +207,7 @@ export default function ShootingAction() {
             "&:hover": {
               backgroundColor: defaultColors.primary,
               color: defaultColors.quaternary,
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", 
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             },
           }}
         >
@@ -168,7 +219,7 @@ export default function ShootingAction() {
           aria-label="add to favorites"
           autoFocus
           onClick={handleBlocked}
-          sx={{ 
+          sx={{
             color: "white",
             backgroundColor: defaultColors.secondary,
             height: "90%",
@@ -176,7 +227,7 @@ export default function ShootingAction() {
             "&:hover": {
               backgroundColor: defaultColors.primary,
               color: defaultColors.quaternary,
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", 
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             },
           }}
         >

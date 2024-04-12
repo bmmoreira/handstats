@@ -12,9 +12,9 @@ import Footer from "./components/pages/Footer";
 import Register from "./components/pages/Register";
 import FlashMessages from "./components/pages/FlashMessages";
 import AppDrawer from "./components/Drawer/AppDrawer";
-import Timeline from "./components/Handball/Timeline2";
-import Timeline2 from "./components/Handball/Timeline2";
-import Statistics from "./components/Handball/Statistics";
+import Timeline from "./components/Handball/Timeline";
+import Timeline2 from "./components/Handball/Timeline";
+import GameStats from "./components/Handball/GameStats";
 import { playersList } from "./components/Utils/constants";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -22,6 +22,7 @@ import ShootingAction from "./components/Handball/ShootingAction";
 import Axios from "axios";
 
 import BottomDrawer from "./components/Handball/BottomDrawer";
+import Statistics from "./components/Handball/Statistics";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -233,7 +234,6 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/about" element={<About />} />
               <Route path="/game-timeline" element={<Timeline />} />
-              <Route path="/game-timeline2" element={<Timeline2 />} />
               <Route path="/game-statistics" element={<Statistics />} />
             </Routes>
             <div className="row footer-row g-0">

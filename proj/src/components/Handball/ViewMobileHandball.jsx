@@ -150,10 +150,9 @@ const handleFieldClick = (event) => {
           game: 1,
           player: Number(appState.playerActive),
           team: 1,
-          SHOTFROM: "NONE",
-          shotFrom: appState.shotFrom,
-          shotEnd: "OUTSIDE",
-          shotResult: "MISS",
+          SHOTFROM: appState.shotFrom,
+          SHOTEND: "OUTSIDE",
+          SHOTRESULT: "MISS",
         },
       };
 
