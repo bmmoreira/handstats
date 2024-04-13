@@ -3,9 +3,8 @@ import StateContext from "../../StateContext";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
-import { themeButtonPlayers, boxField } from "../Utils/Themes";
+import { themeButtonPlayers } from "../Utils/Themes";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 
 function PlayersOnField(props) {
   const appState = useContext(StateContext);

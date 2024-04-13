@@ -179,7 +179,7 @@ function App() {
 
   useEffect(() => {
     const getPlayerList = async () => {
-      const res = await Axios("http://api.handballisfun.org/api/players");
+      const res = await Axios("https://api.handballisfun.org/api/players");
       console.log(res.data.data);
       dispatch({ type: SET_PLAYER_LIST, payload: res.data.data });
     };
