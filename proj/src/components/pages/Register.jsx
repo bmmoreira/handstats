@@ -11,6 +11,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import { themeRegisterPage } from "../Utils/Themes";
 import loginBg from "../../assets/images/login_bg.png";
 
+import LockIcon from "@mui/icons-material/Lock";
+import { Link } from "react-router-dom";
+
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 
@@ -392,7 +395,16 @@ function Register() {
               <Box
               
               >
-               
+               <h4 style={{ margin: "0px 0px 50px 0px" }}>
+              <Link
+                to={`/`}
+                className="text-white"
+                style={{ textDecoration: "none" }}
+              >
+                <LockIcon />
+                Register
+              </Link>
+            </h4>
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label

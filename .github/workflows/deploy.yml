@@ -27,7 +27,7 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
-          source: './proj/dist'
+          source: './proj/dist/'
           target: '/home/handballisfun/www/public_html/app'
 
       - name: Executing remote command
