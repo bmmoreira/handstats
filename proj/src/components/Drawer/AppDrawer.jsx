@@ -301,7 +301,7 @@ export default function TemporaryDrawer() {
           onClick={toggleDrawer("left", false)}
           onKeyDown={toggleDrawer("left", false)}
         >
-          {location.pathname === "/handball" ? (
+          {(location.pathname === "/handball" || location.pathname === "/game-timeline" || location.pathname === "/game-statistics") ? (
             <List>
               {itemsListMap.map((item, index) => {
                 const { text, icon, onClick, disabled } = item;

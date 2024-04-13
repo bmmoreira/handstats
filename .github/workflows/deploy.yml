@@ -37,4 +37,4 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
-          script: cd ./www/public_html/app && ls
+          script: mv /home/handballisfun/www/public_html/app/proj/dist/* /home/handballisfun/www/public_html/app/ && rm -rf /home/handballisfun/www/public_html/app/proj
