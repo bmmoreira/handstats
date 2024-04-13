@@ -81,7 +81,7 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  
+  background-color: #1A535C; 
 }
 
 .header-row{
@@ -95,10 +95,9 @@ body {
   flex-grow: 1;
 }
 
-/* Optional: Add styling for each row */
 .row-content {
-  background-color: #1A535C; /* Example background color */
-  height: 100%; /* Ensures content fills entire row */
+  
+  height: 100%; 
   
 }
 

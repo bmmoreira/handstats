@@ -7,6 +7,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const resources = {
   en: {
     translation: {
+      app_guest: "Please login or register to use the app",
       close: "Close",
       english: "English",
       french: "French",
@@ -95,6 +96,7 @@ const resources = {
   },
   pt: {
     translation: {
+      app_guest: "Por favor faça login ou registre-se para usar o aplicativo",
       close: "Fechar",
       english: "Inglês",
       french: "Francês",
@@ -177,6 +179,7 @@ const resources = {
   },
   fr: {
     translation: {
+      app_guest: "Please login to use the app",
       close: "Fermer",
       english: "Anglais",
       french: "Français",
@@ -262,6 +265,7 @@ const resources = {
   },
   es: {
     translation: {
+      app_guest: "Please login to use the app",
       close: "Cerrar",
       english: "Inglés",
       french: "Francés",

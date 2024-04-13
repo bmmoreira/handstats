@@ -9,6 +9,8 @@ import { useTranslation } from "react-i18next";
 import { defaultColors } from "../Utils/constants";
 import { ThemeProvider } from "@mui/material/styles";
 import { themeRegisterPage } from "../Utils/Themes";
+import loginBg from "../../assets/images/login_bg.png";
+
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 
@@ -377,7 +379,13 @@ function Register() {
   return (
     <>
       <ThemeProvider theme={themeRegisterPage}>
-        <div className="row middle-row" style={{backgroundColor: defaultColors.quaternary}}>
+        <div className="row middle-row" style={{
+          backgroundColor: defaultColors.quaternary,
+          backgroundImage: `url(${loginBg})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}>
           <div className="col d-flex justify-content-center align-items-center">
             <div className="row-content border-0 d-flex justify-content-center align-items-center">
               {/* Start Component content */}

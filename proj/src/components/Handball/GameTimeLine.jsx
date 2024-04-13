@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
 import Timeline from "@mui/lab/Timeline";
@@ -12,17 +12,34 @@ import SportsKabaddiIcon from "@mui/icons-material/SportsKabaddi";
 import SimCardAlertIcon from "@mui/icons-material/SimCardAlert";
 import SportsHandballIcon from "@mui/icons-material/SportsHandball";
 import { defaultColors } from "../Utils/Themes";
-import SportsVolleyballIcon from "@mui/icons-material/SportsVolleyball";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
-import BlockIcon from "@mui/icons-material/Block";
 import Typography from "@mui/material/Typography";
-import "./gametimeline.css";
-import { minWidth } from "@mui/system";
 import Box from "@mui/material/Box";
+import { getEntries } from "../Utils/Utils";
+import { BASE_URL, COLLECTION_NAME_GAMEACTIONS, TOKEN } from "../Utils/constants";
+import "./gametimeline.css";
 
 export default function GameTimeline() {
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
+
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = getEntries(TOKEN,BASE_URL,COLLECTION_NAME_GAMEACTIONS);
+        setData(response.data);
+        setLoading(false);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const formatTime = (timeInSeconds) => {
     const hours = Math.floor(timeInSeconds / 3600);

@@ -113,7 +113,11 @@ export default function TemporaryDrawer() {
     {
       text: t("Timeline"),
       icon: <MapIcon />,
-      onClick: () => navigate("/game-timeline"),
+      onClick: () => {
+
+        navigate("/game-timeline");
+      }
+      ,
       disabled: false,
       route: "all",
     },
@@ -277,12 +281,11 @@ export default function TemporaryDrawer() {
   );
 
   return (
-    <div>
+   
       <Drawer
         anchor={"left"}
         open={appState.drawer}
         onClose={toggleDrawer("left", false)}
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
         
         PaperProps={{
           sx: {
@@ -332,6 +335,6 @@ export default function TemporaryDrawer() {
           )}
         </Box>
       </Drawer>
-    </div>
+    
   );
 }

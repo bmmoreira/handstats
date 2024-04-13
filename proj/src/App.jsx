@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useImmerReducer } from "use-immer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StateContext from "./StateContext";
 import DispatchContext from "./DispatchContext";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
 import HomeGuest from "./components/pages/HomeGuest";
 import Handball from "./components/Handball/Handball";
@@ -10,19 +10,17 @@ import About from "./components/pages/About";
 import Header from "./components/pages/Header";
 import Footer from "./components/pages/Footer";
 import Register from "./components/pages/Register";
+import Login from "./components/pages/Login";
+import HandballGuest from "./components/pages/HandballGuest";
 import FlashMessages from "./components/pages/FlashMessages";
 import AppDrawer from "./components/Drawer/AppDrawer";
-import Timeline from "./components/Handball/Timeline";
-import Timeline2 from "./components/Handball/Timeline";
-import GameStats from "./components/Handball/GameStats";
 import { playersList } from "./components/Utils/constants";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import ShootingAction from "./components/Handball/ShootingAction";
 import Axios from "axios";
-
-import BottomDrawer from "./components/Handball/BottomDrawer";
 import Statistics from "./components/Handball/Statistics";
+import Timeline from "./components/Handball/Timeline";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -63,6 +61,7 @@ function App() {
     isVisibleSactionButtons: false,
     shootingActionDialogOpen: false,
     gameActions: [],
+    timeLine: [],
     drawer: false,
     drawerBottom: false,
   };
@@ -229,12 +228,19 @@ function App() {
               />
               <Route
                 path="/handball"
-                element={state.loggedIn ? <Handball /> : <Handball />}
+                element={state.loggedIn ? <Handball /> : <HandballGuest />}
               />
               <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/about" element={<About />} />
-              <Route path="/game-timeline" element={<Timeline />} />
-              <Route path="/game-statistics" element={<Statistics />} />
+              <Route
+                path="/game-timeline"
+                element={state.loggedIn ? <Timeline /> : <HandballGuest />}
+              />
+              <Route
+                path="/game-statistics"
+                element={state.loggedIn ? <Statistics /> : <HandballGuest />}
+              />
             </Routes>
             <div className="row footer-row g-0">
               <div className="col">
@@ -244,7 +250,7 @@ function App() {
               </div>
             </div>
           </div>
-          <AppDrawer />
+          <AppDrawer  />
           <ShootingAction />
         </BrowserRouter>
       </DispatchContext.Provider>

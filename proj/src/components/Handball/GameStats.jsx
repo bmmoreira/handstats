@@ -13,7 +13,6 @@ export default function GameStats() {
 
   return (
     <>
-     
         <div
           className="row middle-row"
           style={{ backgroundColor: defaultColors.quaternary }}
@@ -28,7 +27,6 @@ export default function GameStats() {
             </div>
           </div>
         </div>
-     
     </>
   );
 }
