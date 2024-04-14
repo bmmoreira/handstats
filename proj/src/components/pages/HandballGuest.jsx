@@ -3,6 +3,8 @@ import DispatchContext from "../../DispatchContext";
 import StateContext from "../../StateContext";
 import appLogo from "../../assets/images/logo_hb01.png";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom';
+
 import loginBg from "../../assets/images/login_bg.png";
 import { ThemeProvider } from "@mui/material/styles";
 import { loginTheme } from "../Utils/Themes";
@@ -12,6 +14,7 @@ export default function HandBallGuest() {
   const { t } = useTranslation();
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
+  const navigate = useNavigate();
 
   return (
    <>

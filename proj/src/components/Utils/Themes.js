@@ -696,7 +696,7 @@ export const themesActions = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: defaultColors.primary, 
+          backgroundColor: defaultColors.secondary, 
           "&:hover": {
             backgroundColor: "#ffe66d",
             color: "#ff0000", 
