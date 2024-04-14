@@ -4,7 +4,7 @@ import StateContext from "../../StateContext";
 import appLogo from "../../assets/images/logo_hb03.png";
 import { useNavigate } from 'react-router-dom';
 import { ThemeProvider } from "@mui/material/styles";
-import { themeButtonHome } from "../Utils/Themes";
+import { loginTheme } from "../Utils/Themes";
 import Button from "@mui/material/Button";
 import loginBg from "../../assets/images/login_bg.png";
 import { useTranslation } from "react-i18next";
@@ -33,11 +33,11 @@ function HomeGuest() {
             <div className="intro">
               <p>{t("home_text_01")}</p>
             </div>
-            <ThemeProvider theme={themeButtonHome}>
+            <ThemeProvider theme={loginTheme}>
             <div className="home-buttons">
              
                 <Button
-                  size="medium"
+                  
                   variant="contained"
                   onClick={() => {
                     console.log("button login clicked");
@@ -47,7 +47,7 @@ function HomeGuest() {
                   {t("Login")}
                 </Button>
                 <Button
-                  size="medium"
+                  sx={{ width: '180px'}}
                   variant="contained"
                   onClick={() => {
                     console.log("button register clicked");

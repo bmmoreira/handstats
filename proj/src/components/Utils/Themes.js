@@ -713,3 +713,52 @@ export const themesActions = createTheme({
   },
 });
 
+export const loginTheme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#0f9bd9",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          fontSize: "0.9rem",
+          height: "30px",
+          width: "160px",
+          borderRadius: "5px",
+          marginTop: "5px",
+          color: '#f0f0f0',
+          marginLeft: "20px",
+          marginBottom: "3px",
+          backgroundColor: "#198754",
+          "&:hover": {
+            backgroundColor: "#146c43",
+            borderColor: "#0677b2",
+            boxShadow: "none",
+          },
+          "&:active": {
+            boxShadow: "none",
+            backgroundColor: '#4fc3f7',
+            borderColor: '#f0f0f0',
+          },
+          "&:focus": {
+            boxShadow: '0 0 0 0.2rem rgba(64,70,74,.5)',
+          },
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          // Add your custom styles here
+          color: "#fff",
+          fontSize: "1.0rem",
+          border: "1px solid #ccc",
+          borderRadius: "5px",
+          margin: "0 0 10px 0",
+          backgroundColor: "rgba(255, 255, 255, 0.2)",
+        },
+      },
+    },
+  },
+});

@@ -57,7 +57,7 @@ export default function TemporaryDrawer() {
     appDispatch({ type: "logout" });
     appDispatch({
       type: "flashMessages",
-      value: "You have successfully logged out",
+      value: t("succefully_logout"),
     });
   }
 

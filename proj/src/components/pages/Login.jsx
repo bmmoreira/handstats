@@ -3,14 +3,13 @@ import Axios from "axios";
 import DispatchContext from "../../DispatchContext";
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
-import Button from "@mui/material/Button";
-import { loginButtom } from "../Utils/constants.js";
+import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_URL } from "../Utils/constants";
 import { useTranslation } from "react-i18next";
-import { ThemeProvider } from "@mui/material/styles";
-import { themeRegisterPage } from "../Utils/Themes";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { loginTheme } from "../Utils/Themes";
 import { defaultColors } from "../Utils/constants";
 import Input from "@mui/material/Input";
 import { styled } from "@mui/system";
@@ -37,14 +36,14 @@ export default function Login() {
         appDispatch({ type: "login", data: response.data });
         appDispatch({
           type: "flashMessages",
-          value: "You have successfully logged in",
+          value: t("succefully_login"),
         });
         navigate(`/handball`);
       } else {
         console.log("incorrect username /password");
         appDispatch({
           type: "flashMessages",
-          value: "Invalid username / password. ",
+          value: t("invalid_username"),
         });
       }
     } catch (error) {
@@ -53,10 +52,10 @@ export default function Login() {
   }
 
   const form = (
-    <form onSubmit={handleSubmit}>
-      <div className="container">
-        <div className="row ">
-          <div className="col-12 d-flex justify-content-center col-lg-3 p-2 justify-content-lg-end">
+    <ThemeProvider theme={loginTheme}>
+      <form onSubmit={handleSubmit}>
+        <div className="container">
+          <div className="row ">
             <h4 style={{ margin: "0px 30px 0px 0px" }}>
               <Link
                 to={`/`}
@@ -68,8 +67,8 @@ export default function Login() {
               </Link>
             </h4>
           </div>
-          <div className="col-12 d-flex justify-content-center col-lg-3 p-0 align-items-center">
-            <CustomInput
+          <div className="row " style={{marginTop: '20px'}}>
+            <Input
               aria-label="username"
               placeholder={t("username")}
               onChange={(e) => {
@@ -79,8 +78,8 @@ export default function Login() {
               type="text"
             />
           </div>
-          <div className="col-12 d-flex justify-content-center col-lg-3 p-0 align-items-center">
-            <CustomInput
+          <div className="row " style={{marginTop: '10px'}}>
+            <Input
               aria-label="Password"
               placeholder={t("password")}
               onChange={(e) => {
@@ -90,53 +89,35 @@ export default function Login() {
               type="password"
             />
           </div>
-          <div className="col-12 d-flex justify-content-center col-lg-3 p-2 justify-content-lg-start align-items-center">
-            <Button
-              aria-label="logout"
-              endIcon={<PersonIcon />}
-              color="primary"
-              type="submit"
-              sx={{
-                ...loginButtom,
-                marginLeft: "20px",
-                marginBottom: "3px",
-                backgroundColor: "#198754",
-                "&:hover": {
-                  backgroundColor: "#146c43",
-                  borderColor: "#0677b2",
-                  boxShadow: "none",
-                },
-              }}
-            >
+          <div className="row d-flex justify-content-center" style={{marginTop: '10px'}}>
+            <Button aria-label="login" endIcon={<PersonIcon />} type="submit">
               {t("signin")}
             </Button>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </ThemeProvider>
   );
 
   return (
-    <ThemeProvider theme={themeRegisterPage}>
-      <div
-        className="row middle-row g-0"
-        style={{
-          backgroundColor: defaultColors.quaternary,
-          backgroundImage: `url(${loginBg})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div className="col d-flex justify-content-center align-items-center">
-          <div className="row-content border-0 d-flex justify-content-center align-items-center">
-            {/* Start Component content */}
-            {form}
-            {/* End Component content */}
-          </div>
+    <div
+      className="row middle-row g-0"
+      style={{
+        backgroundColor: defaultColors.quaternary,
+        backgroundImage: `url(${loginBg})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="col d-flex justify-content-center align-items-center">
+        <div className="row-content border-0 d-flex justify-content-center align-items-center">
+          {/* Start Component content */}
+          {form}
+          {/* End Component content */}
         </div>
       </div>
-    </ThemeProvider>
+    </div>
   );
 }
 

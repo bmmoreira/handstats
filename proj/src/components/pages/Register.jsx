@@ -7,13 +7,15 @@ import { LOGIN_URL, PASSMINLENGHT } from "../Utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { defaultColors } from "../Utils/constants";
-import { ThemeProvider } from "@mui/material/styles";
-import { themeRegisterPage } from "../Utils/Themes";
-import loginBg from "../../assets/images/login_bg.png";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { loginTheme } from "../Utils/Themes";
 
+import loginBg from "../../assets/images/login_bg.png";
+import PersonIcon from "@mui/icons-material/Person";
+
+import Input from "@mui/material/Input";
 import LockIcon from "@mui/icons-material/Lock";
 import { Link } from "react-router-dom";
-
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 
@@ -21,13 +23,48 @@ import Box from "@mui/material/Box";
 Adding validation and automatically log in a successfully registered user
 */
 
-
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          width: "200px",
+          backgroundColor: defaultColors.quaternary,
+          "&:hover": {
+            backgroundColor: "#ffe66d",
+            color: "#ff0000",
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+          },
+          borderRadius: "18px",
+          padding: "12px 24px",
+          fontWeight: "bold",
+          fontSize: "12px",
+          textTransform: "uppercase",
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          // Add your custom styles here
+          color: "#fff",
+          fontSize: "1.0rem",
+          border: "1px solid #ccc",
+          borderRadius: "5px",
+          margin: 0,
+          backgroundColor: "rgba(255, 255, 255, 0.2)",
+          width: "100%",
+        },
+      },
+    },
+  },
+});
 
 function Register() {
   const { t } = useTranslation();
   const appDispatch = useContext(DispatchContext);
   const navigate = useNavigate();
-  
+
   /*
   Essentially, before we let the user actually submit and send a request to the server
   we want to first make sure that whatever username they entered is unique, meaning it's not already
@@ -381,30 +418,31 @@ function Register() {
 
   return (
     <>
-      <ThemeProvider theme={themeRegisterPage}>
-        <div className="row middle-row" style={{
-          backgroundColor: defaultColors.quaternary,
-          backgroundImage: `url(${loginBg})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}>
+      <ThemeProvider theme={loginTheme}>
+        <div
+          className="row middle-row g-0"
+          style={{
+            backgroundColor: defaultColors.quaternary,
+            backgroundImage: `url(${loginBg})`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
           <div className="col d-flex justify-content-center align-items-center">
             <div className="row-content border-0 d-flex justify-content-center align-items-center">
               {/* Start Component content */}
-              <Box
-              
-              >
-               <h4 style={{ margin: "0px 0px 50px 0px" }}>
-              <Link
-                to={`/`}
-                className="text-white"
-                style={{ textDecoration: "none" }}
-              >
-                <LockIcon />
-                Register
-              </Link>
-            </h4>
+              <Box sx={{width: '320px'}}>
+                <h4 style={{ margin: "0px 0px 50px 0px" }}>
+                  <Link
+                    to={`/`}
+                    className="text-white"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <LockIcon />
+                    Register
+                  </Link>
+                </h4>
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label
@@ -413,7 +451,7 @@ function Register() {
                     >
                       <small>{t("username")}</small>
                     </label>
-                    <input
+                    <Input
                       onChange={(e) =>
                         dispatch({
                           type: "usernameImmediately",
@@ -442,10 +480,14 @@ function Register() {
                     </CSSTransition>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email-register" className=" mb-1 text-white" style={{ margin: "10px 0 0 0"}}>
+                    <label
+                      htmlFor="email-register"
+                      className=" mb-1 text-white"
+                      style={{ margin: "10px 0 0 0" }}
+                    >
                       <small>{t("email")}</small>
                     </label>
-                    <input
+                    <Input
                       onChange={(e) =>
                         dispatch({
                           type: "emailImmediately",
@@ -458,8 +500,6 @@ function Register() {
                       type="text"
                       placeholder={t("email_placeholder")}
                       autoComplete="off"
-                      
-                      
                     />
                     <CSSTransition
                       in={state.email.hasErrors}
@@ -476,11 +516,11 @@ function Register() {
                     <label
                       htmlFor="password-register"
                       className=" mb-1 text-white"
-                      style={{ margin: "10px 0 0 0"}}
+                      style={{ margin: "10px 0 0 0" }}
                     >
                       <small>{t("password")}</small>
                     </label>
-                    <input
+                    <Input
                       onChange={(e) =>
                         dispatch({
                           type: "passwordImmediately",
@@ -503,13 +543,15 @@ function Register() {
                         {state.password.message}
                       </div>
                     </CSSTransition>
+                   <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
                     <Button
                       type="submit"
-                        variant="contained"
-                        style={{ margin: "20px 0 0 0"}}
+                      variant="contained"
+                      style={{ margin: "0 0 0 0" }}
                     >
                       {t("signup")}
                     </Button>
+                    </div>
                   </div>
                 </form>
               </Box>

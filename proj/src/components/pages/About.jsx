@@ -17,10 +17,10 @@ function About() {
                 <div className="row-content">
                   <div>
                    
-                      <img src={logoCesae}  alt="Cesae Digital" style={{marginBottom: '20px'}} />
+                      <img src={logoCesae}  alt="Cesae Digital" style={{marginTop: '80px', marginBottom: '20px'}} />
                    
                   </div>
-                  <div className="intro">
+                  <div className="intro" style={{marginTop: '30px'}}>
                   <h3>{t("about")}</h3>
                   
                   <p>
