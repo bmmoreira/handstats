@@ -104,7 +104,7 @@ export default function GameTimeline() {
             color="text.secondary"
           >
             <Typography variant="h6" component="h1" sx={{ color: 'red', fontSize: '0.875rem' }}>
-              Player: {item.player}
+              #{item.player}
             </Typography>
             <Typography variant="h5" component="h1" sx={{ color: 'red', fontSize: '0.875rem' }}>
             {item.actionName}
