@@ -85,7 +85,7 @@ export default function GameTimeline() {
       {appState.gameActions.map((item, index) => (
         <TimelineItem sx={{ minWidth: "100%", borderRadius: '5px', backgroundColor: '#4cbd96', height: '90px' }} key={index}>
           <TimelineOppositeContent
-            sx={{ m: "auto 0", color: 'red', paddingRight: '5px'}}
+            sx={{ m: "auto 0", color: '#f0f0f0', paddingRight: '5px'}}
             align="right"
             variant="body2"
             color="text.secondary"
@@ -103,12 +103,10 @@ export default function GameTimeline() {
             variant="body2"
             color="text.secondary"
           >
-            <Typography variant="h6" component="h1" sx={{ color: 'red', fontSize: '0.875rem' }}>
-              #{item.player}
+            <Typography variant="h6" component="h1" sx={{ color: '#f0f0f0', fontSize: '0.875rem' }}>
+              #{item.player} {item.actionName}
             </Typography>
-            <Typography variant="h5" component="h1" sx={{ color: 'red', fontSize: '0.875rem' }}>
-            {item.actionName}
-            </Typography>
+            
             
           </TimelineContent>
         </TimelineItem>

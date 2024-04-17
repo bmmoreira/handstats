@@ -290,7 +290,7 @@ export default function TemporaryDrawer() {
         PaperProps={{
           sx: {
             backgroundColor: defaultColors.terciary,
-            color: "red",
+            color: defaultColors.quaternary,
             
           },
         }}

@@ -277,7 +277,7 @@ export const buttonFieldSecondRow = createTheme({
         {
           props: { variant: 'selected', size: "large" },
           style: {
-            backgroundColor: 'brown', // Example color
+            backgroundColor: '#4cbd96', // selected array color
             color: 'white',
             // Add any other styles you want to customize
           },
@@ -357,7 +357,7 @@ export const buttonFieldFirstRow = createTheme({
         {
           props: { variant: 'selected', size: "large" },
           style: {
-            backgroundColor: 'brown', // Example color
+            backgroundColor: '#4cbd96', // selected array color
             color: 'white',
             // Add any other styles you want to customize
           },
@@ -437,7 +437,7 @@ export const actionButtons = createTheme({
         {
           props: { variant: 'selected', size: "large" },
           style: {
-            backgroundColor: 'brown', // Example color
+            backgroundColor: '#4cbd96', // Example color
             color: 'white',
             
           },
@@ -482,7 +482,7 @@ export const actionButtons = createTheme({
         {
           props: { variant: 'selected', size: "large" },
           style: {
-            backgroundColor: 'brown', // Example color
+            backgroundColor: '#4cbd96', // selected array color
             color: 'white',
             // Add any other styles you want to customize
           },
@@ -566,7 +566,7 @@ export const btBenchPlayers = createTheme({
         {
           props: { variant: 'selected', size: "large" },
           style: {
-            backgroundColor: 'brown', // Example color
+            backgroundColor: '#4cbd96', // selected array color
             color: 'white',
             // Add any other styles you want to customize
           },
@@ -648,7 +648,7 @@ export const timeCounter = createTheme({
         {
           props: { variant: 'selected', size: "large" },
           style: {
-            backgroundColor: 'brown', // Example color
+            backgroundColor: '#4cbd96', // selected array color
             color: 'white',
             
           },
